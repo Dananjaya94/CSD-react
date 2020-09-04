@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 
-export default class viponthespot extends Component
+export default class knowledgenet extends Component
 {
     render()
     {
         return(
             <div className = "container">
                 <h2>
-                    Vip on the Spot
+                    Knowledge net
                 </h2>
             </div>
         );

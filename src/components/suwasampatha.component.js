@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 
-export default class viponthespot extends Component
+export default class suwasampathaonthespot extends Component
 {
     render()
     {
         return(
             <div className = "container">
                 <h2>
-                    Vip on the Spot
+                    Suwasampatha on the Spot
                 </h2>
             </div>
         );
