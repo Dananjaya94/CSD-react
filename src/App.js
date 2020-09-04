@@ -10,6 +10,7 @@ import SuwasampathaOntheSpot from "./components/suwasampatha.component";
 import MarineOntheSpot from "./components/marineonthespot.component";
 import KnowledgeNet from "./components/Knowledgenet.component";
 import ComplainManager from "./components/complainmanager.component";
+import Home from "./components/main.component";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
       <div className = "container">
 
       <Route path = "/" exact  component = {Login}></Route>
-      <Route path = "/home" exact  component = {Dashboard}></Route>
+      <Route path = "/home" exact  component = {Home}></Route>
       <Route path = "/viponthespot" exact  component = {VipOntheSpot}></Route>
       <Route path = "/suwasampathaonthespot" exact  component = {SuwasampathaOntheSpot}></Route>
       <Route path = "/marineonthespot" exact  component = {MarineOntheSpot}></Route>
