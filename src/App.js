@@ -4,7 +4,6 @@ import { BrowserRouter as Router , Route } from "react-router-dom";
 import './App.css';
 
 import Login from "./components/login.component";
-import Dashboard from "./components/dashboard/Dashboard";
 import VipOntheSpot from "./components/viponthespot.component";
 import SuwasampathaOntheSpot from "./components/suwasampatha.component";
 import MarineOntheSpot from "./components/marineonthespot.component";

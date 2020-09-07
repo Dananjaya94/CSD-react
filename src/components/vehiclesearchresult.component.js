@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import map from '../Maps/sl_road_map.pdf';
+// import map from '../Maps/sl_road_map.pdf';
 import $ from 'jquery';
 import DataTable from 'datatables.net';
 
@@ -67,10 +67,6 @@ $(document).ready(function (){
 
 export default class vehiclesearchresult extends Component
 {
-    constructor(props)
-    {
-        super(props);
-    }
 
     render() {
         return (

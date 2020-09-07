@@ -53,7 +53,7 @@ export default class insertnumber extends Component
                 <div className = "row">
                     <div className = "col-md-3">
                         <input type = "submit" className = "btn btn-info" value = "Sri Lanka Map (Google Maps)" onClick={() => this.nextPath('/srilankamap') }></input><br></br>
-                        <br></br><a href = {map} target = "_blank" className = "btn btn-primary">Sri Lanka Road Map (Local)</a>
+                        <br></br><a href = {map} target = "_blank" rel="noopener noreferrer" className = "btn btn-primary">Sri Lanka Road Map (Local)</a>
                     </div>
 
                     <div className = "col-md-6">
@@ -62,11 +62,11 @@ export default class insertnumber extends Component
                     </div>
 
                     <div className = "col-md-3">
-                    <br></br><a href = "http://10.10.1.244/asp/VIPHOT/indexpol.asp" target = "_blank" className = "btn btn-primary">Search by Policy</a>
-                    <br></br><br></br><a href = "http://10.10.1.244/asp/VIPHOT/VISIT.htm" target = "_blank" className = "btn btn-primary">Accident Visit</a><br></br><br></br>
+                    <br></br><a href = "http://10.10.1.244/asp/VIPHOT/indexpol.asp" target = "_blank" rel="noopener noreferrer" className = "btn btn-primary">Search by Policy</a>
+                    <br></br><br></br><a href = "http://10.10.1.244/asp/VIPHOT/VISIT.htm" target = "_blank" rel="noopener noreferrer" className = "btn btn-primary">Accident Visit</a><br></br><br></br>
                         <input type = "submit" className = "btn btn-primary" value="Home"  onClick={() => this.nextPath('/numberinsert')}></input><br></br><br></br>
-                        <a href = "http://10.10.1.118:8080/advancesearch/" target = "_blank" className = "btn btn-primary">Advanced Inquiries</a><br></br><br></br>
-                        <a href = "http://10.10.8.117/claim/nerve/car_to_cat_csd.php" target = "_blank" className = "btn btn-primary">Car to Car</a><br></br>
+                        <a href = "http://10.10.1.118:8080/advancesearch/" target = "_blank" rel="noopener noreferrer" className = "btn btn-primary">Advanced Inquiries</a><br></br><br></br>
+                        <a href = "http://10.10.8.117/claim/nerve/car_to_cat_csd.php" target = "_blank" rel="noopener noreferrer" className = "btn btn-primary">Car to Car</a><br></br>
                     </div>
                 </div>
             </div>

@@ -132,9 +132,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useHistory } from "react-router-dom";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import axios from 'axios';
 
 import { userService } from './userServices';
@@ -211,9 +208,9 @@ export default function SignIn() {
             .catch(error => {console.log("Error : ",error); alert("Error")});
           }
 
-          const handleSuccessAuth =  (data) => {
-            window.history.push("/inbound");
-          }
+          // const handleSuccessAuth =  (data) => {
+          //   window.history.push("/inbound");
+          // }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
