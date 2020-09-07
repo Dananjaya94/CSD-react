@@ -3,12 +3,40 @@ import map from '../Maps/sl_road_map.pdf';
 
 export default class insertnumber extends Component
 {
+    constructor(props)
+    {
+        super(props);
+
+        this.state = {
+            enteredVehicleNumber : '',
+        }
+
+        this.onChange_enteredvalue = this.onChange_enteredvalue.bind(this);
+    }
+    
+    onChange_enteredvalue(e)
+    {
+        this.setState({
+            enteredVehicleNumber: e.target.value
+        });
+    }
+
     showInMapClicked = () => {
         window.open("http://maps.google.com?q= 7.8731,80.7718");
       };
 
       nextPath(path) {
+        alert(this.state.enteredVehicleNumber);
+        localStorage.setItem('entrval', JSON.stringify(this.state.enteredVehicleNumber));
         this.props.history.push(path);
+        window.location.reload(false);
+      }
+
+      onSearch_click(e)
+      {
+          e.preventDefault();
+        //   console.log(this.state.enteredVehicleNumber);
+          this.nextPath('/numberinsert/');
       }
       
     render()
@@ -29,8 +57,8 @@ export default class insertnumber extends Component
                     </div>
 
                     <div className = "col-md-6">
-                        <input type = "text" className = "form-control"></input><br></br>
-                        <input type = "submit" className = "btn btn-primary" value = "Search Number"></input>
+                        <input type = "text" value={this.state.enteredVehicleNumber} onChange={this.onChange_enteredvalue} className = "form-control"></input><br></br>
+                        <input type = "submit" className = "btn btn-primary" value = "Search Number" onClick={() => this.nextPath('/vehicleresult/') }></input>
                     </div>
 
                     <div className = "col-md-3">
