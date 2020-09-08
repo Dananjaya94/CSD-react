@@ -6,23 +6,34 @@ import DataTable from 'datatables.net';
 var outcolls = [];
 var outrowsss = [];
 
-function getUrlVars() {
-    var vars = [], hash;
-    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-    for (var i = 0; i < hashes.length; i++) {
-        hash = hashes[i].split('=');
-        vars.push(hash[0]);
-        vars[hash[0]] = hash[1];
-    }
-    return vars;
-}
+var col1;
+
+// function getUrlVars() {
+//     var vars = [], hash;
+//     var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+//     for (var i = 0; i < hashes.length; i++) {
+//         hash = hashes[i].split('=');
+//         vars.push(hash[0]);
+//         vars[hash[0]] = hash[1];
+//     }
+//     return vars;
+// }
 
 $(document).ready(function (){
-    var queryStringValue = getUrlVars()["id"];
+    // var queryStringValue = getUrlVars()["id"];
+    var vhnumber = {};
+    vhnumber.str = JSON.parse(localStorage.getItem('entrval'));
+    console.log(vhnumber);
+
+    var v2 = JSON.stringify(vhnumber.str);
+    console.log(v2);
+
     $.ajax({
         type: "GET",
         url: "http://localhost:4000/vehicleinformationsearch/:id",
-        data: { id: queryStringValue },
+        data: {
+            str : vhnumber
+        } ,
         contentType: "application/json",
         beforeSend: function () {
 
@@ -63,10 +74,45 @@ $(document).ready(function (){
         }
     
     });
+
+    $("#searchresulttable").on('click','tr',function(){
+    
+
+        var currentRow=$(this).closest("tr"); 
+         
+         col1=currentRow.find("td:eq(0)").html(); // get current row 1st TD value
+        //  col2=currentRow.find("td:eq(1)").text(); // get current row 2nd TD
+        //  col3=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
+        //  col4=currentRow.find("td:eq(3)").text(); // get current row 3rd TD
+        //  col5=currentRow.find("td:eq(4)").text(); // get current row 3rd TD
+        //  col6=currentRow.find("td:eq(5)").text(); // get current row 3rd TD
+        //  col7=currentRow.find("td:eq(6)").text(); // get current row 3rd TD
+         
+
+         
+         $('#vh_id').val(col1);
+         
+
+    });
 });
 
 export default class vehiclesearchresult extends Component
 {
+    constructor(props)
+    {
+        super(props);
+
+        this.state = {
+            vh_num: ''
+        }
+    }
+
+    onchagne_vhnum(e)
+    {
+        this.setState({
+            vh_num: e.target.value
+        });
+    }
 
     render() {
         return (
@@ -74,8 +120,30 @@ export default class vehiclesearchresult extends Component
                  <div className = "row">
                      <div className = "col-md-12">
                          <h2>Search Result</h2>
-                         <table id = "searchresulttable"></table>
                      </div>
+                 </div>
+
+                 <div className = "row">
+                     <div className = "col-md-3"></div>
+                     <div className = "col-md-6">
+                         Selected Vehicle Number : <input type = "text" id = "vh_id" style = {{textAlign:"center"}} value = {this.state.vh_num} onChange = {this.onchagne_vhnum}></input>
+                         
+                     </div>
+                     <div className = "col-md-3"></div>
+                 </div>
+                 <br></br>
+
+                 <div className = "row">
+                     <div className = "col-md-3"></div>
+                     <div className = "col-md-6">
+                        <input type = "submit" style = {{width:"100%"}} className = "btn btn-primary" value = "Submit"></input>
+                     </div>
+                     <div className = "col-md-3"></div>
+                 </div>
+                 <br></br>
+
+                 <div className = "row">
+                     <table id = "searchresulttable"></table>
                  </div>
              </div>
         );

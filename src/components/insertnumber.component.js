@@ -26,7 +26,6 @@ export default class insertnumber extends Component
       };
 
       nextPath(path) {
-        alert(this.state.enteredVehicleNumber);
         localStorage.setItem('entrval', JSON.stringify(this.state.enteredVehicleNumber));
         this.props.history.push(path);
         window.location.reload(false);
