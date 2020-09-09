@@ -25,7 +25,8 @@ export default class insertnumber extends Component
         window.open("http://maps.google.com?q= 7.8731,80.7718");
       };
 
-      nextPath(path) {
+      nextPath(path)
+      {
         localStorage.setItem('entrval', JSON.stringify(this.state.enteredVehicleNumber));
         this.props.history.push(path);
         window.location.reload(false);

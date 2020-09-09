@@ -13,6 +13,7 @@ import Home from "./components/main.component";
 import NumberInsert from "./components/insertnumber.component";
 import SLMap from "./components/srilankamap.component";
 import VehicleResults from "./components/vehiclesearchresult.component";
+import ClaimMain from "./components/claim_main.component";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
       <Route path = "/numberinsert" component = {NumberInsert}></Route>
       <Route path = "/srilankamap" component = {SLMap}></Route>
       <Route path = "/vehicleresult/" component = {VehicleResults}></Route>
+      <Route path = "/claimmain/" component = {ClaimMain}></Route>
 
     </div>
     </Router>

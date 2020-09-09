@@ -105,6 +105,9 @@ export default class vehiclesearchresult extends Component
         this.state = {
             vh_num: ''
         }
+
+        this.onSubmit_click = this.onSubmit_click.bind(this);
+        this.onchagne_vhnum = this.onchagne_vhnum.bind(this);
     }
 
     onchagne_vhnum(e)
@@ -112,6 +115,20 @@ export default class vehiclesearchresult extends Component
         this.setState({
             vh_num: e.target.value
         });
+    }
+
+    nextPath(path) 
+    {
+        localStorage.setItem('selectednumber', JSON.stringify(this.state.vh_num));
+        this.props.history.push(path);
+        window.location.reload(false);
+    }
+    
+    onSubmit_click(e)
+    {
+        e.preventDefault();
+        //   console.log(this.state.enteredVehicleNumber);
+        this.nextPath('/claimmain/');
     }
 
     render() {
@@ -136,7 +153,7 @@ export default class vehiclesearchresult extends Component
                  <div className = "row">
                      <div className = "col-md-3"></div>
                      <div className = "col-md-6">
-                        <input type = "submit" style = {{width:"100%"}} className = "btn btn-primary" value = "Submit"></input>
+                        <input type = "submit" onClick = {this.onSubmit_click} style = {{width:"100%"}} className = "btn btn-primary" value = "Submit"></input>
                      </div>
                      <div className = "col-md-3"></div>
                  </div>
