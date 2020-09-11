@@ -129,8 +129,10 @@ export default class vehiclesearchresult extends Component
 
     nextPath(path) 
     {
-        localStorage.setItem('selectednumber', JSON.stringify(this.state.vh_num));
-        localStorage.setItem('selectedpolicynumber', JSON.stringify(this.state.vh_pol_id));
+        alert(col1);
+        alert(col2);
+        localStorage.setItem('selectednumber', JSON.stringify(col1));
+        localStorage.setItem('selectedpolicynumber', JSON.stringify(col2));
         this.props.history.push(path);
         window.location.reload(false);
     }

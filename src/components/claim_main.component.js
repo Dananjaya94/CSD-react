@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import $ from 'jquery';
 
 $(document).ready(function (){
+    alert(JSON.parse(localStorage.getItem('selectednumber')));
+    alert(JSON.parse(localStorage.getItem('selectedpolicynumber')));
     console.log(JSON.parse(localStorage.getItem('selectednumber')));
     console.log(JSON.parse(localStorage.getItem('selectedpolicynumber')));
 });
