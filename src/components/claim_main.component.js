@@ -12,7 +12,7 @@ $(document).ready(function (){
 
     var vh_data = {};
     vh_data.str = JSON.parse(localStorage.getItem('entrval'));
-    vh_data.usr = JSON.parse(localStorage.getItem('user'));
+    vh_data.us = JSON.parse(localStorage.getItem('user'));
     vh_data.pwd = JSON.parse(localStorage.getItem('pass'));
 
     $.ajax({
