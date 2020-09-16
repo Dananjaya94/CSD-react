@@ -52,21 +52,21 @@ export default class insertnumber extends Component
 
                 <div className = "row">
                     <div className = "col-md-3">
-                        <input type = "submit" className = "btn btn-info" value = "Sri Lanka Map (Google Maps)" onClick={() => this.nextPath('/srilankamap') }></input><br></br>
-                        <br></br><a href = {map} target = "_blank" rel="noopener noreferrer" className = "btn btn-primary">Sri Lanka Road Map (Local)</a>
+                        <input type = "submit" className = "btn btn-info block" value = "Sri Lanka Map (Google Maps)" onClick={() => this.nextPath('/srilankamap') }></input><br></br>
+                        <br></br><a href = {map} target = "_blank" rel="noopener noreferrer" className = "btn btn-primary block">Sri Lanka Road Map (Local)</a>
                     </div>
 
                     <div className = "col-md-6">
                         <input type = "text" value={this.state.enteredVehicleNumber} onChange={this.onChange_enteredvalue} className = "form-control"></input><br></br>
-                        <input type = "submit" className = "btn btn-primary" value = "Search Number" onClick={() => this.nextPath('/vehicleresult/') }></input>
+                        <input type = "submit" className = "btn btn-primary block" value = "Search Number" onClick={() => this.nextPath('/vehicleresult/') }></input>
                     </div>
 
                     <div className = "col-md-3">
-                    <br></br><a href = "http://10.10.1.244/asp/VIPHOT/indexpol.asp" target = "_blank" rel="noopener noreferrer" className = "btn btn-primary">Search by Policy</a>
-                    <br></br><br></br><a href = "http://10.10.1.244/asp/VIPHOT/VISIT.htm" target = "_blank" rel="noopener noreferrer" className = "btn btn-primary">Accident Visit</a><br></br><br></br>
-                        <input type = "submit" className = "btn btn-primary" value="Home"  onClick={() => this.nextPath('/numberinsert')}></input><br></br><br></br>
-                        <a href = "http://10.10.1.118:8080/advancesearch/" target = "_blank" rel="noopener noreferrer" className = "btn btn-primary">Advanced Inquiries</a><br></br><br></br>
-                        <a href = "http://10.10.8.117/claim/nerve/car_to_cat_csd.php" target = "_blank" rel="noopener noreferrer" className = "btn btn-primary">Car to Car</a><br></br>
+                    <br></br><a href = "http://10.10.1.244/asp/VIPHOT/indexpol.asp" target = "_blank" rel="noopener noreferrer" className = "btn btn-primary block">Search by Policy</a>
+                    <br></br><br></br><a href = "http://10.10.1.244/asp/VIPHOT/VISIT.htm" target = "_blank" rel="noopener noreferrer" className = "btn btn-primary block">Accident Visit</a><br></br><br></br>
+                        <input type = "submit" className = "btn btn-primary block" value="Home"  onClick={() => this.nextPath('/numberinsert')}></input><br></br><br></br>
+                        <a href = "http://10.10.1.118:8080/advancesearch/" target = "_blank" rel="noopener noreferrer" className = "btn btn-primary block">Advanced Inquiries</a><br></br><br></br>
+                        <a href = "http://10.10.8.117/claim/nerve/car_to_cat_csd.php" target = "_blank" rel="noopener noreferrer" className = "btn btn-primary block">Car to Car</a><br></br>
                     </div>
                 </div>
             </div>
