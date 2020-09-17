@@ -32,15 +32,15 @@ $(document).ready(function (){
 
                 console.log(value);
                 
-                // for (var o in value.metaData)
-                // {
-                //     outcolls.push(value.metaData[o]);
-                // }
-                // for (var i in value.rows)
-                // {
-                //     outrowsss.push(value.rows[i]);
-                // }
-                // console.log(outrowsss);
+                for (var o in value.metaData)
+                {
+                    outcolls.push(value.metaData[o]);
+                }
+                for (var i in value.rows)
+                {
+                    outrowsss.push(value.rows[i]);
+                }
+                console.log(outrowsss);
                 
                 // $('#searchresulttable').DataTable({
                 //     data: outrowsss,
@@ -66,12 +66,48 @@ $(document).ready(function (){
 
 export default class ClaimMain extends Component
 {
+    renderInboundData(inboundDT){
+        let i = 0;
+            let tableContent = (inboundDT === undefined || inboundDT === null || inboundDT.length === 0) ? null : (
+                inboundDT.data.map((item) => {
+                    return (
+                        <tr key = {item[i]}>
+                            <td>{item[i]}</td>
+                            <td>{item[i+1]}</td>
+                        </tr>
+                    );
+                })
+            );
+    
+            return (
+                
+                    <table id="inboundMyTable" className="tableFixHead" style={{overflowX:"auto"}} cellPadding="6">
+                        <thead>
+                            <tr>
+                                <th>VEHICLE NUMBER</th>
+                                <th>POLICY NUMBER</th>
+                            </tr>
+                            <tr>
+                                <th>REFERENCE NUMBER</th>
+                                <th>SUM INSURED</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {tableContent}
+                        </tbody>
+                    </table>
+               
+            );
+        }
+
     render() {
+        let content = this.renderInboundData(outrowsss);
         return (
              <div className = "container">
                  <div className = "row">
                      <div className = "col-md-12">
                          <h2>Claim Main</h2>
+                         {content}
                      </div>
                  </div>
              </div>
