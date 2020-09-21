@@ -8,6 +8,8 @@ var outrowsss = [];
 
 var col1;
 var col2;
+var col3;
+var col4;
 
 // function getUrlVars() {
 //     var vars = [], hash;
@@ -60,12 +62,14 @@ $(document).ready(function (){
                     columns: 
                     [
                         { title: "VEHICLE NUMBER" },
-                        { title: "POLICY NUMBER" },
-                        { title: "NAME OF THE INSURED" },
-                        { title: "BRANCH" },
+                        { title: "PRS Sequence" },
+                        { title: "Policy Sequence"},
+                        { title: "Policy Number" },
+                        { title: "Name" },
+                        { title: "Branch"},
                         { title: "POLICY START" },
                         { title: "POLICY END" },
-                        { title: "SUM INSURED"},
+                        { title: "SUM INSURED"}
                     ]
                 });
             })
@@ -83,15 +87,15 @@ $(document).ready(function (){
          
          col1=currentRow.find("td:eq(0)").html(); // get current row 1st TD value
          col2=currentRow.find("td:eq(1)").text(); // get current row 2nd TD
-        //  col3=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
-        //  col4=currentRow.find("td:eq(3)").text(); // get current row 3rd TD
+         col3=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
+         col4=currentRow.find("td:eq(3)").text(); // get current row 3rd TD
         //  col5=currentRow.find("td:eq(4)").text(); // get current row 3rd TD
         //  col6=currentRow.find("td:eq(5)").text(); // get current row 3rd TD
         //  col7=currentRow.find("td:eq(6)").text(); // get current row 3rd TD
          
 
          $('#vh_id').val(col1);
-         $('#vh_pol_id').val(col2);
+         $('#vh_pol_id').val(col3);
          
 
     });
@@ -132,7 +136,12 @@ export default class vehiclesearchresult extends Component
         // alert(col1);
         // alert(col2);
         localStorage.setItem('selectednumber', JSON.stringify(col1));
-        localStorage.setItem('selectedpolicynumber', JSON.stringify(col2));
+        // var splitval = col2.replace(col1+"=","");
+        // alert(col3);
+        localStorage.setItem('selected_prssec', JSON.stringify(col2));
+        localStorage.setItem('selected_polsec', JSON.stringify(col3));
+        localStorage.setItem('selectedpolicynumber', JSON.stringify(col4));
+
         this.props.history.push(path);
         window.location.reload(false);
     }

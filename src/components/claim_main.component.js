@@ -3,18 +3,22 @@ import $ from 'jquery';
 
 var outcolls = [];
 var outrowsss = [];
+
+var periloutcolls = [];
+var periloutrows = [];
+
+var debcols = [];
+var debrows = [];
 var vhnumcol,polcol,refcol,sumcol,polperiofromcol,polperiodtocol,nameofinsuredcol,addressofinsuredcol,makecol,chassicol,covernotecol,checkretcol,enginenumcol,yearofmakecol,deboutstandingcol,policyremarkcol,totalrefundcol,policybranchcol,policymecol,vehicletypecol,fueltypecol;
+var vh_data = {};
+var vh_perildata = {};
 
 $(document).ready(function (){
     // alert(JSON.parse(localStorage.getItem('selectednumber')));
     // alert(JSON.parse(localStorage.getItem('selectedpolicynumber')));
-    console.log(JSON.parse(localStorage.getItem('selectednumber')));
-    console.log(JSON.parse(localStorage.getItem('selectedpolicynumber')));
-
-    var vh_data = {};
-    vh_data.str = JSON.parse(localStorage.getItem('entrval'));
-    vh_data.us = JSON.parse(localStorage.getItem('user'));
-    vh_data.pwd = JSON.parse(localStorage.getItem('pass'));
+    // console.log(JSON.parse(localStorage.getItem('selectednumber')));
+    // console.log(JSON.parse(localStorage.getItem('selectedpolicynumber')));
+    
 
     $.ajax({
         type: "GET",
@@ -108,6 +112,133 @@ $(document).ready(function (){
         }
     
     });
+
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:4000/perilinformation/:id",
+        data: {
+            str : vh_perildata
+        } ,
+        contentType: "application/json",
+        beforeSend: function () {
+
+        },
+        success: function (data) {
+            $.each(data, function (index, value) {
+                periloutcolls = [];
+                periloutrows = [];
+
+                console.log(value);
+                
+                for (var o in value.metaData)
+                {
+                    periloutcolls.push(value.metaData[o]);
+                }
+                for (var i in value.rows)
+                {
+                    periloutrows.push(value.rows[i]);
+                }
+                console.log(periloutrows);
+                
+                $('#bp1').val(periloutrows[0][3]);
+                $('#bp2').val(periloutrows[0][4]);
+                $('#bp3').val(periloutrows[0][2]);
+                $('#bp4').val(periloutrows[0][5]);
+
+                
+                $('#freehealth1').val(periloutrows[1][3]);
+                $('#freehealth2').val(periloutrows[1][4]);
+                $('#freehealth3').val(periloutrows[1][2]);
+                $('#freehealth4').val(periloutrows[1][5]);
+
+                $('#majorillness1').val(periloutrows[2][3]);
+                $('#majorillness2').val(periloutrows[2][4]);
+                $('#majorillness3').val(periloutrows[2][2]);
+                $('#majorillness4').val(periloutrows[2][5]);
+
+                $('#extendedmotor1').val(periloutrows[3][3]);
+                $('#extendedmotor2').val(periloutrows[3][4]);
+                $('#extendedmotor3').val(periloutrows[3][2]);
+                $('#extendedmotor4').val(periloutrows[3][5]);
+
+                $('#noclaim1').val(periloutrows[4][3]);
+                $('#noclaim2').val(periloutrows[4][4]);
+                $('#noclaim3').val(periloutrows[4][2]);
+                $('#noclaim4').val(periloutrows[4][5]);
+
+                $('#premiumld1').val(periloutrows[5][3]);
+                $('#premiumld2').val(periloutrows[5][4]);
+                $('#premiumld3').val(periloutrows[5][2]);
+                $('#premiumld4').val(periloutrows[5][5]);
+
+                $('#srcctovh1').val(periloutrows[6][3]);
+                $('#srcctovh2').val(periloutrows[6][4]);
+                $('#srcctovh3').val(periloutrows[6][2]);
+                $('#srcctovh4').val(periloutrows[6][5]);
+
+                $('#rdsfty1').val(periloutrows[7][3]);
+                $('#rdsfty2').val(periloutrows[7][4]);
+                $('#rdsfty3').val(periloutrows[7][2]);
+                $('#rdsfty4').val(periloutrows[7][5]);
+
+                $('#thrdpt1').val(periloutrows[8][3]);
+                $('#thrdpt2').val(periloutrows[8][4]);
+                $('#thrdpt3').val(periloutrows[8][2]);
+                $('#thrdpt4').val(periloutrows[8][5]);
+                
+                
+            })
+        },
+        error: function (jqXHR, exception) {
+
+        }
+    
+    });
+
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:4000/debitinformation/:id",
+        data: {
+            str : vh_perildata
+        } ,
+        contentType: "application/json",
+        beforeSend: function () {
+
+        },
+        success: function (data) {
+            $.each(data, function (index, value) {
+                debcols = [];
+                debrows= [];
+                console.log(value);
+                
+                for (var o in value.metaData)
+                {
+                    debcols.push(value.metaData[o]);
+                }
+                for (var i in value.rows)
+                {
+                    debrows.push(value.rows[i]);
+                }
+                console.log(debrows);
+                
+                $('#debitinfotable').DataTable({
+                    data: debrows,
+                    columns: 
+                    [
+                        { title: "Date" },
+                        { title: "Voucher Number" },
+                        { title: "Type"},
+                        { title: "Amount" },
+                        { title: "Balance" }
+                    ]
+                });
+            })
+        },
+        error: function (jqXHR, exception) {
+
+        }
+    
+    });
 });
 
 export default class ClaimMain extends Component
@@ -146,6 +277,19 @@ export default class ClaimMain extends Component
     //         );
     //     }
 
+    componentDidMount()
+    {
+        vh_data.str = JSON.parse(localStorage.getItem('selectednumber'));
+        vh_data.polstr = JSON.parse(localStorage.getItem('selectedpolicynumber'));
+        vh_data.us = JSON.parse(localStorage.getItem('user'));
+        vh_data.pwd = JSON.parse(localStorage.getItem('pass'));
+
+        vh_perildata.prssec = JSON.parse(localStorage.getItem('selected_prssec'));
+        vh_perildata.polsec = JSON.parse(localStorage.getItem('selected_polsec'));
+        vh_perildata.polstr = JSON.parse(localStorage.getItem('selectedpolicynumber'));
+        // alert(JSON.parse(localStorage.getItem('selected_prssec')));
+        // alert(JSON.parse(localStorage.getItem('selected_polsec')));
+    }
     render() {
         // let content = this.renderInboundData(outrowsss);
         return (
@@ -279,6 +423,104 @@ export default class ClaimMain extends Component
                      <div className = "col-md-3">
                         <input type = "text" className = "form-control" disabled id="fueltype"></input>
                      </div>
+                 </div>
+                 <hr className = "form-group"></hr>
+                 <br></br>
+                 <div className = "row">
+                     <div className = "col-md-12">
+                         <h3>Peril Information</h3>
+                         <table>
+                             <thead>
+                                 <tr>
+                                     <th>Peril Name</th>
+                                     <th>Peril Amount</th>
+                                     <th>Peril Reminder</th>
+                                     <th>Peril Limit</th>
+                                     <th>Peril Percentage</th>
+                                 </tr>
+                             </thead>
+
+                             <tbody>
+                                 <tr>
+                                     <td>BASIC PREMIUM</td>
+                                     <td><input type = "text" id="bp1" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="bp2" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="bp3" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="bp4" className = "form-control"  disabled></input></td>
+                                 </tr>
+                                 <tr>
+                                     <td>FREE HEALTH COVER</td>
+                                     <td><input type = "text" id="freehealth1" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="freehealth2" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="freehealth3" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="freehealth4" className = "form-control"  disabled></input></td>
+                                 </tr>
+                                 <tr>
+                                     <td>MAJOR ILLNESS INSURANCE COVER</td>
+                                     <td><input type = "text" id="majorillness1" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="majorillness2" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="majorillness3" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="majorillness4" className = "form-control"  disabled></input></td>
+                                 </tr>
+                                 <tr>
+                                     <td>EXTEDED MOTOR WARRANTY (REFER TO THE ATTACHMENT)</td>
+                                     <td><input type = "text" id="extendedmotor1" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="extendedmotor2" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="extendedmotor3" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="extendedmotor4" className = "form-control"  disabled></input></td>
+                                 </tr>
+                                 <tr>
+                                     <td>NO CLAIM BONUS</td>
+                                     <td><input type = "text" id="noclaim1" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="noclaim2" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="noclaim3" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="noclaim4" className = "form-control"  disabled></input></td>
+                                 </tr>
+                                 <tr>
+                                     <td>PREMIUM LOADING</td>
+                                     <td><input type = "text" id="premiumld1" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="premiumld2" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="premiumld3" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="premiumld4" className = "form-control"  disabled></input></td>
+                                 </tr>
+                                 <tr>
+                                     <td>SRCC TO VEHICLE</td>
+                                     <td><input type = "text" id="srcctovh1" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="srcctovh2" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="srcctovh3" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="srcctovh4" className = "form-control"  disabled></input></td>
+                                 </tr>
+                                 <tr>
+                                     <td>ROAD SAFETY FUND</td>
+                                     <td><input type = "text" id="rdsfty1" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="rdsfty2" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="rdsfty3" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="rdsfty4" className = "form-control"  disabled></input></td>
+                                 </tr>
+                                 <tr>
+                                     <td>3RD PARTY PROPERTY DAMAGE</td>
+                                     <td><input type = "text" id="thrdpt1" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="thrdpt2" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="thrdpt3" className = "form-control"  disabled></input></td>
+                                     <td><input type = "text" id="thrdpt4" className = "form-control"  disabled></input></td>
+                                 </tr>
+
+                             </tbody>
+                         </table>
+                     </div>
+                 </div>
+
+                 <hr></hr>
+                 <div className = "row">
+                     <div className = "col-md-12">
+                             <h3>Debit Information</h3>
+                             <br></br>
+                             <table id = "debitinfotable"></table>
+                         </div>
+                 </div>
+
+                 <div className = "row">
+
                  </div>
              </div>
         );
