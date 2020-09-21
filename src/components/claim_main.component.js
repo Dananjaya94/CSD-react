@@ -519,8 +519,13 @@ export default class ClaimMain extends Component
                          </div>
                  </div>
 
+                 <hr></hr>
                  <div className = "row">
-
+                     <div className = "col-md-12">
+                         <h3>Claim Information</h3>
+                         <br></br>
+                         <table id = "claiminformation"></table>
+                     </div>
                  </div>
              </div>
         );
