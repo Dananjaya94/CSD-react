@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Map, InfoWindow, Marker} from 'google-maps-react';
+import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
-export default class SriLankaMap extends Component {
+export class SriLankaMap extends Component {
   render() {
     return (
         <Map
@@ -10,13 +10,13 @@ export default class SriLankaMap extends Component {
         // style = { style }
         google = { this.props.google }
         onClick = { this.onMapClick }
-        zoom = { 14 }
-        initialCenter = {{ lat: 7.8731, lng: -80.7718 }}
+        zoom = { 7 }
+        initialCenter = {{ lat: 6.927079, lng: 79.861244 }}
       >
         <Marker
           onClick = { this.onMarkerClick }
           title = { 'Changing Colors Garage' }
-          position = {{ lat: 39.648209, lng: -75.711185 }}
+          position = {{ lat: 6.927079, lng: 79.861244 }}
           name = { 'Changing Colors Garage' }
         />
         <InfoWindow
@@ -39,3 +39,7 @@ export default class SriLankaMap extends Component {
     );
   }
 }
+
+export default GoogleApiWrapper({
+  apiKey: 'AIzaSyC5e8t7mEesa2KaYqJfOQesagQjcTV9fdA'
+})(SriLankaMap);
