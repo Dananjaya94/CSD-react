@@ -279,7 +279,7 @@ export default class ClaimMain extends Component
 
     componentDidMount()
     {
-        vh_data.str = JSON.parse(localStorage.getItem('selectednumber'));
+        vh_data.vhid = JSON.parse(localStorage.getItem('selectednumber'));
         vh_data.polstr = JSON.parse(localStorage.getItem('selectedpolicynumber'));
         vh_data.us = JSON.parse(localStorage.getItem('user'));
         vh_data.pwd = JSON.parse(localStorage.getItem('pass'));
