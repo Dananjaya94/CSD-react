@@ -239,6 +239,69 @@ $(document).ready(function (){
         }
     
     });
+
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:4000/claiminfo/:id",
+        data: {
+            str : vh_data
+        } ,
+        contentType: "application/json",
+        beforeSend: function () {
+
+        },
+        success: function (data) {
+            $.each(data, function (index, value) {
+                debcols = [];
+                debrows= [];
+                console.log(value);
+                
+                for (var o in value.metaData)
+                {
+                    debcols.push(value.metaData[o]);
+                }
+                for (var i in value.rows)
+                {
+                    debrows.push(value.rows[i]);
+                }
+                console.log(debrows);
+                
+                $('#claiminfotable').DataTable({
+                    data: debrows,
+                    columns: 
+                    [
+                        { title: "CSD REFERENCE NO" },
+                        { title: "CLAIM DATE" },
+                        { title: "CLAIM TIME"},
+                        { title: "CLAIM BRANCH" },
+                        { title: "CLAIM AMOUNT" },
+                        { title: " CLAIM REFERENCE " },
+                        { title: "LOCATION" },
+                        { title: "DAMAGE" },
+                        { title: "ASSESSOR" },
+                        { title: "ASSESSOR INFORM TIME" },
+                        { title: "ASSESSOR REACH TIME" },
+                        { title: "CUSTOMER COURTESY" },
+                        { title: "HANDLED BY" },
+                        { title: "DAMAGE GROUP" },
+                        { title: "ABBREVIATION" },
+                        { title: "DRIVER LICENCE NO" },
+                        { title: "DRIVER NAME" },
+                        { title: "3RD PARTY INFORMATION" },
+                        { title: "CUSTOMER CONTACT ON" },
+                        { title: "OTS PAID" },
+                        { title: "EDITED COMMENTS" },
+                        { title: "Green Copy No" },
+                        { title: "Offer" },
+                    ]
+                });
+            })
+        },
+        error: function (jqXHR, exception) {
+
+        }
+    
+    });
 });
 
 export default class ClaimMain extends Component
@@ -524,7 +587,7 @@ export default class ClaimMain extends Component
                      <div className = "col-md-12">
                          <h3>Claim Information</h3>
                          <br></br>
-                         <table id = "claiminformation"></table>
+                         <table id = "claiminfotable"></table>
                      </div>
                  </div>
              </div>
