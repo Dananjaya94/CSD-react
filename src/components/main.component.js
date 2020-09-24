@@ -20,34 +20,34 @@ export default class main extends Component
 
                 <div className = "row" style = {{alignContent:"center"}}>
                     <div className = "col-md-4" style = {{alignContent:"center"}}>
-                        <input type = "submit" className = "btn btn-primary block" value="Vip On the Spot" onClick={() => this.nextPath('/viponthespot') }></input>
+                        <input type = "submit" className = "btn btn-dark block" value="Vip On the Spot" onClick={() => this.nextPath('/viponthespot') }></input>
                     </div>
                     {/* <div className = "col-md-4" style = {{alignContent:"center"}} onClick={() => this.nextPath('/suwasampathaonthespot') }>
-                        <br></br><input type = "submit" className = "btn btn-info" value="Suwasamppatha On the Spot"></input>
+                        <br></br><input type = "submit" className = "btn btn-warning" value="Suwasamppatha On the Spot"></input>
                     </div> */}
                     <div className = "col-md-4" style = {{alignContent:"center"}}>
-                        <a href = "http://10.10.1.244/asp/SSIMG/SSHOME.asp" className = "btn btn-info block">Suwasampatha</a>
+                        <a href = "http://10.10.1.244/asp/SSIMG/SSHOME.asp" className = "btn btn-warning block">Suwasampatha</a>
                     </div>
                     {/* <div className = "col-md-4" style = {{alignContent:"center"}} onClick={() => this.nextPath('/marineonthespot') }>
-                        <br></br><input type = "submit" className = "btn btn-primary block" value="Marine On the Spot"></input>
+                        <br></br><input type = "submit" className = "btn btn-dark block" value="Marine On the Spot"></input>
                     </div> */}
                     <div className = "col-md-4" style = {{alignContent:"center"}}>
-                        <a href = "http://10.10.1.244/asp/MArine/mrHOME.asp" className = "btn btn-primary block">Marine On the Spot</a>
+                        <a href = "http://10.10.1.244/asp/MArine/mrHOME.asp" className = "btn btn-dark block">Marine On the Spot</a>
                     </div>
                 </div>
 
                 <div className = "row" style={{alignContent:"center"}}>
                     <div className = "col-md-4" style = {{alignContent:"center"}} onClick={() => this.nextPath('/knowledgenet') }>
-                        <br></br><input type = "submit" className = "btn btn-info block" value="Knowledge Net"></input>
+                        <br></br><input type = "submit" className = "btn btn-warning block" value="Knowledge Net"></input>
                     </div>
                     <div className = "col-md-4" style = {{alignItems:"center"}}>
-                        <br></br><input type = "submit" className = "btn btn-primary block" value="Log Out"></input>
+                        <br></br><input type = "submit" className = "btn btn-dark block" value="Log Out"></input>
                     </div>
                     {/* <div className = "col-md-4" style = {{alignContent:"center"}} onClick={() => this.nextPath('/complainmanager') }>
-                        <br></br><input type = "submit" className = "btn btn-info" value="Complain Manager"></input>
+                        <br></br><input type = "submit" className = "btn btn-warning" value="Complain Manager"></input>
                     </div> */}
                     <div className = "col-md-4" style = {{alignContent:"center"}}>
-                        <br></br><a href = "http://10.10.1.244/asp/VIPHOT/com/menu.asp" className = "btn btn-info block">Complain Manager</a>
+                        <br></br><a href = "http://10.10.1.244/asp/VIPHOT/com/menu.asp" className = "btn btn-warning block">Complain Manager</a>
                     </div>
                 </div>
             </div>

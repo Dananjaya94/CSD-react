@@ -357,11 +357,58 @@ export default class ClaimMain extends Component
         // let content = this.renderInboundData(outrowsss);
         return (
              <div className = "container" style = {{textAlign:"left"}}>
+                 
                  <div className = "row">
                      <div className = "col-md-12">
                          <h2 style = {{textAlign:"center"}}>Claim Main</h2>
                      </div>
                  </div>
+
+                 <div className = "row">
+                     <div className = "col-md-3">
+                         <input type ="submit" style = {{width:"100%"}} className = "btn btn-dark" value = "Inform Complain"></input>
+                     </div>
+                     <div className = "col-md-3">
+                         <input type ="submit" style = {{width:"100%"}} className = "btn btn-dark" value = "Generate Complain"></input>
+                     </div>
+                     <div className = "col-md-3">
+                         <input type ="submit" style = {{width:"100%"}} className = "btn btn-dark" value = "Complain Manager"></input>
+                     </div>
+                     <div className = "col-md-3">
+                         <input type ="submit" style = {{width:"100%"}} className = "btn btn-dark" value = "Edit Complain"></input>
+                     </div>
+                 </div>
+                 <div className = "row">
+                     <div className = "col-md-4">
+                         <input type ="submit" style = {{width:"100%"}} className = "btn btn-warning" value = "Search by Policy"></input>
+                     </div>
+                     <div className = "col-md-4">
+                         <input type ="submit" style = {{width:"100%"}} className = "btn btn-warning" value = "Branch Claim Info"></input>
+                     </div>
+                     <div className = "col-md-4">
+                         <input type ="submit" style = {{width:"100%"}} className = "btn btn-warning" value = "Assessor Info"></input>
+                     </div>
+                 </div>
+
+                 <div className = "row">
+                     <div className = "col-md-4">
+                         <input type ="submit" style = {{width:"100%"}} className = "btn btn-dark" value = "Accident Visit"></input>
+                     </div>
+                     <div className = "col-md-4">
+                         <input type ="submit" style = {{width:"100%"}} className = "btn btn-dark" value = "Home Page"></input>
+                     </div>
+                     <div className = "col-md-4">
+                         <input type ="submit" style = {{width:"100%"}} className = "btn btn-dark" value = "Search by Vehicle"></input>
+                     </div>
+                 </div>
+
+                 <div className = "row">
+                     <div className = "col-md-12">
+                         <input type = "submit" style = {{width:"100%"}} className = "btn btn-warning" value = "Generate New Claim"></input>
+                     </div>
+                 </div>
+
+                 <br></br>
                  <div className = "row">
                      <div className = "col-md-3">VEHICLE NUMBER</div>
                      <div className = "col-md-3">
