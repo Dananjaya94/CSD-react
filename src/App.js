@@ -14,6 +14,9 @@ import NumberInsert from "./components/insertnumber.component";
 import SLMap from "./components/srilankamap.component";
 import VehicleResults from "./components/vehiclesearchresult.component";
 import ClaimMain from "./components/claim_main.component";
+import InformClaim from "./components/VIPHOTcomponents/com/informcomplain.component";
+import GenerateComplain from "./components/VIPHOTcomponents/com/generateNewClaim.component";
+import AssessorSelection from "./components/VIPHOTcomponents/com/assessorselectionform.component";
 
 function App() {
   return (
@@ -31,6 +34,9 @@ function App() {
       <Route path = "/srilankamap" component = {SLMap}></Route>
       <Route path = "/vehicleresult/" component = {VehicleResults}></Route>
       <Route path = "/claimmain/" component = {ClaimMain}></Route>
+      <Route path = "/informclaim/" component = {InformClaim}></Route>
+      <Route path = "/generatenewclaim" component = {GenerateComplain}></Route>
+      <Route path = "/assessorselection/" component = {AssessorSelection}></Route>
 
     </div>
     </Router>

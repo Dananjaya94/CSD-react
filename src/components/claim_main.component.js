@@ -353,6 +353,11 @@ export default class ClaimMain extends Component
         // alert(JSON.parse(localStorage.getItem('selected_prssec')));
         // alert(JSON.parse(localStorage.getItem('selected_polsec')));
     }
+
+    nextPath(path) {
+        this.props.history.push(path);
+      }
+
     render() {
         // let content = this.renderInboundData(outrowsss);
         return (
@@ -366,7 +371,7 @@ export default class ClaimMain extends Component
 
                  <div className = "row">
                      <div className = "col-md-3">
-                         <input type ="submit" style = {{width:"100%"}} className = "btn btn-dark" value = "Inform Complain"></input>
+                         <input type ="submit" style = {{width:"100%"}} className = "btn btn-dark" value = "Inform Complain" onClick={() => this.nextPath('/informclaim') }></input>
                      </div>
                      <div className = "col-md-3">
                          <input type ="submit" style = {{width:"100%"}} className = "btn btn-dark" value = "Generate Complain"></input>
@@ -404,7 +409,7 @@ export default class ClaimMain extends Component
 
                  <div className = "row">
                      <div className = "col-md-12">
-                         <input type = "submit" style = {{width:"100%"}} className = "btn btn-warning" value = "Generate New Claim"></input>
+                         <input type = "submit" style = {{width:"100%"}} className = "btn btn-danger" value = "Generate New Claim" onClick={() => this.nextPath('/assessorselection/')}></input>
                      </div>
                  </div>
 
