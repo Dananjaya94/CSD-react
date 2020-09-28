@@ -1,4 +1,3 @@
-import { extend } from 'jquery';
 import React, {Component} from 'react';
 import $ from 'jquery';
 import TextField from '@material-ui/core/TextField';
@@ -9,13 +8,10 @@ import { makeStyles } from '@material-ui/core/styles';
 var asCols = [];
 var asRows = [];
 
-const useStyles = makeStyles({
-    table: {
-      minWidth: 650,
-    },
-  });
+var outcolls = [];
+var outrowsss = [];
 
-  const classes = useStyles();
+
 
 $.ajax({
     type: "GET",
@@ -56,54 +52,49 @@ $.ajax({
 
 });
 
-// $.ajax({
-//     type: "GET",
-//     url: "http://localhost:4000/vehicleinformationsearch/:id",
-//     data: {
-//         str : vhnumber
-//     } ,
-//     contentType: "application/json",
-//     beforeSend: function () {
+$.ajax({
+    type: "GET",
+    url: "http://localhost:4000/getAssessors/:id",
+    data: {} ,
+    contentType: "application/json",
+    beforeSend: function () {
 
-//     },
-//     success: function (data) {
-//         $.each(data, function (index, value) {
-//             outcolls = [];
-//             outrowsss= [];
-//             console.log(value);
+    },
+    success: function (data) {
+        $.each(data, function (index, value) {
+            outcolls = [];
+            outrowsss= [];
+            console.log(value);
             
-//             for (var o in value.metaData)
-//             {
-//                 outcolls.push(value.metaData[o]);
-//             }
-//             for (var i in value.rows)
-//             {
-//                 outrowsss.push(value.rows[i]);
-//             }
-//             console.log(outrowsss);
+            for (var o in value.metaData)
+            {
+                outcolls.push(value.metaData[o]);
+            }
+            for (var i in value.rows)
+            {
+                outrowsss.push(value.rows[i]);
+            }
+            console.log(outrowsss);
             
-//             $('#searchresulttable').DataTable({
-//                 data: outrowsss,
-//                 columns: 
-//                 [
-//                     { title: "Code" },
-//                     { title: "Assessor Name" },
-//                     { title: "Currently At"},
-//                     { title: "Policy Number" },
-//                     { title: "Name" },
-//                     { title: "Branch"},
-//                     { title: "POLICY START" },
-//                     { title: "POLICY END" },
-//                     { title: "SUM INSURED"}
-//                 ]
-//             });
-//         })
-//     },
-//     error: function (jqXHR, exception) {
+            $('#assessortable').DataTable({
+                data: outrowsss,
+                columns: 
+                [
+                    { title: "Code" },
+                    { title: "Assessor Name" },
+                    { title: "Currently At"},
+                    { title: "Time" },
+                    { title: "Visits For the Day" },
+                    { title: "Contact"},
+                ]
+            });
+        })
+    },
+    error: function (jqXHR, exception) {
 
-//     }
+    }
 
-// });
+});
 
 export default class AssessorSelection extends Component
 {
@@ -115,6 +106,7 @@ export default class AssessorSelection extends Component
         }
     }
     render() {
+        
         return (
              <div className = "container">
                  <div className = "row">
@@ -145,7 +137,7 @@ export default class AssessorSelection extends Component
                  </div>
 
                  <div className = "row">
-                     <table className={classes.table} id = "assessortable"></table>
+                     <table id = "assessortable"></table>
                  </div>
              </div>
         );
