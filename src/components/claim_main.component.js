@@ -356,6 +356,7 @@ export default class ClaimMain extends Component
 
     nextPath(path) {
         this.props.history.push(path);
+        window.location.reload(false);
       }
 
     render() {

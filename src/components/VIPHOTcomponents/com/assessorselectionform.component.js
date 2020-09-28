@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import $ from 'jquery';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-
+import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
 var asCols = [];
@@ -11,6 +11,7 @@ var asRows = [];
 var outcolls = [];
 var outrowsss = [];
 
+var col1,col2;
 
 
 $.ajax({
@@ -76,7 +77,7 @@ $.ajax({
             }
             console.log(outrowsss);
             
-            $('#assessortable').DataTable({
+            $('#assessorselectiontable').DataTable({
                 data: outrowsss,
                 columns: 
                 [
@@ -96,6 +97,25 @@ $.ajax({
 
 });
 
+$(document).ready(function (){
+    $("#assessorselectiontable").on('click','tr',function(){
+    
+
+        var currentRow=$(this).closest("tr"); 
+         
+         col1=currentRow.find("td:eq(0)").html(); // get current row 1st TD value
+         col2=currentRow.find("td:eq(1)").text();
+    
+         $('#selectedassessor').val(col1);
+         $('#selectedassessorname').val(col2);
+
+         localStorage.setItem('assessorcode',JSON.stringify(col1));
+         localStorage.setItem('assessorname',JSON.stringify(col2));
+         
+    
+    });
+});
+
 export default class AssessorSelection extends Component
 {
     constructor(props) {
@@ -104,7 +124,23 @@ export default class AssessorSelection extends Component
         this.state = {
             selectedZone : ''
         }
+
+        this.nextPath = this.nextPath.bind(this);
+        this.onSubmit_click = this.onSubmit_click.bind(this);
     }
+
+    nextPath(path) {
+        this.props.history.push(path);
+        window.location.reload(false);
+      }
+
+      onSubmit_click(e)
+    {
+        e.preventDefault();
+        //   console.log(this.state.enteredVehicleNumber);
+        this.nextPath('/clmain/');
+    }
+
     render() {
         
         return (
@@ -135,9 +171,26 @@ export default class AssessorSelection extends Component
                      <div className = "col-md-2">Name</div>
                      <div className = "col-md-2"><TextField label="Enter Name" variant="outlined"></TextField></div>
                  </div>
+                 <br></br>
+                 <div className = "row">
+                     <div className = "col-md-3">Selected Assessor : </div>
+                     <div className = "col-md-3"><TextField disabled variant="outlined" id = "selectedassessor" style = {{width:"100%"}}></TextField></div>
+                     <div className = "col-md-3"><TextField disabled variant="outlined" id = "selectedassessorname" style = {{width:"100%"}}></TextField></div>
+                     <div className = "col-md-3">
+                         <Button
+                        //  onClick = {handleSubmit}
+                         type="button"
+                         fullWidth
+                         variant="contained"
+                         color="primary"
+                         onClick = {this.onSubmit_click}>Select Assessor</Button>
+                     </div>
+                 </div>
 
                  <div className = "row">
-                     <table id = "assessortable"></table>
+                     <div className = "col-md-12">
+                         <table id = "assessorselectiontable"></table>
+                     </div>
                  </div>
              </div>
         );

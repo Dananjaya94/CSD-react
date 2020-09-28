@@ -17,6 +17,7 @@ import ClaimMain from "./components/claim_main.component";
 import InformClaim from "./components/VIPHOTcomponents/com/informcomplain.component";
 import GenerateComplain from "./components/VIPHOTcomponents/com/generateNewClaim.component";
 import AssessorSelection from "./components/VIPHOTcomponents/com/assessorselectionform.component";
+import ClaimMn from "./components/VIPHOTcomponents/com/clmain.component";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
       <Route path = "/informclaim/" component = {InformClaim}></Route>
       <Route path = "/generatenewclaim" component = {GenerateComplain}></Route>
       <Route path = "/assessorselection/" component = {AssessorSelection}></Route>
+      <Route path = "/clmain/" component = {ClaimMn}></Route>
 
     </div>
     </Router>
