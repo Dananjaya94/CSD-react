@@ -9,7 +9,7 @@ var periloutrows = [];
 
 var debcols = [];
 var debrows = [];
-var vhnumcol,polcol,refcol,sumcol,polperiofromcol,polperiodtocol,nameofinsuredcol,addressofinsuredcol,makecol,chassicol,covernotecol,checkretcol,enginenumcol,yearofmakecol,deboutstandingcol,policyremarkcol,totalrefundcol,policybranchcol,policymecol,vehicletypecol,fueltypecol;
+var vhnumcol,polcol,refcol,sumcol,branchcol,polperiofromcol,polperiodtocol,nameofinsuredcol,addressofinsuredcol,makecol,chassicol,covernotecol,checkretcol,enginenumcol,yearofmakecol,deboutstandingcol,policyremarkcol,totalrefundcol,policybranchcol,policymecol,vehicletypecol,fueltypecol;
 var vh_data = {};
 var vh_perildata = {};
 
@@ -48,6 +48,8 @@ $(document).ready(function (){
                 console.log(outrowsss);
                 console.log(outrowsss[0][3]);
 
+                branchcol = outrowsss[0][1];
+                localStorage.setItem('branch',JSON.stringify(branchcol));
                 vhnumcol = outrowsss[0][3];
                 polcol = outrowsss[0][6];
                 refcol = outrowsss[0][10];

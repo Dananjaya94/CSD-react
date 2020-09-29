@@ -1,10 +1,15 @@
 import React, {Component} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+
 import $ from 'jquery';
 
-var clmain_vhnumcol,clmain_polcol,clmain_nameofinsuredcol,clmain_policymecol,clmain_polperiofromcol,clmain_polperiodtocol,clmain_policymecontactcol,clmain_sumcol;
-var f;
+var clmain_vhnumcol,clmain_polcol,clmain_nameofinsuredcol,clmain_policymecol,clmain_polperiofromcol,clmain_polperiodtocol,clmain_policymecontactcol,clmain_sumcol,clmain_time,clmain_branch,clmain_user;
+var f,t;
+var thours , tminutes , tseconds;
+var SelectedLanguage,selectedaccidentzone;
 
 $(document).ready(function (){
     clmain_vhnumcol = JSON.parse(localStorage.getItem('entrval'));
@@ -17,7 +22,14 @@ $(document).ready(function (){
     clmain_polperiodtocol = JSON.parse(localStorage.getItem('policyto'));
     clmain_policymecontactcol = JSON.parse(localStorage.getItem('assessorcontact'));
     clmain_sumcol = JSON.parse(localStorage.getItem('suminsurd'));
-    
+    clmain_branch = JSON.parse(localStorage.getItem('branch'));
+    clmain_user = JSON.parse(localStorage.getItem('user'));
+    t = new Date();
+    tminutes = t.getMinutes();
+    thours = t.getHours();
+    tseconds = t.getSeconds();
+
+    clmain_time = thours+":"+tminutes+":"+tseconds;
 
     $('#clmn_vehinum').val(clmain_vhnumcol);
     $('#clmn_polnum').val(clmain_polcol);
@@ -27,6 +39,9 @@ $(document).ready(function (){
     $('#clmn_datefromto').val(clmain_polperiofromcol + "/" + clmain_polperiodtocol);
     $('#clmn_execontactnum').val(clmain_policymecontactcol);
     $('#clmn_suminsurd').val(clmain_sumcol);
+    $('#clmn_time').val(clmain_time);
+    $('#clmn_branch').val(clmain_branch);
+    $('#clmn_user').val(clmain_user);
 });
 
 export default class Clmain extends Component
@@ -79,7 +94,7 @@ export default class Clmain extends Component
                  <br></br>
                  <div className = "row">
                      <div className = "col-md-3">Claim Time</div>
-                     <div className = "col-md-3"><TextField className = "block" label="Claim Time" variant="outlined"></TextField></div>
+                     <div className = "col-md-3"><TextField disabled id = "clmn_time" className = "block" variant="outlined"></TextField></div>
                  </div>
 
                  <br></br>
@@ -87,7 +102,7 @@ export default class Clmain extends Component
                      <div className = "col-md-3">Hospital Name   </div>
                      <div className = "col-md-3"><TextField className = "block" label="Hospital Name" variant="outlined"></TextField></div>
                      <div className = "col-md-3">Claim Branch</div>
-                     <div className = "col-md-3"><TextField className = "block" label="Claim Branch" variant="outlined"></TextField></div>
+                     <div className = "col-md-3"><TextField disabled id = "clmn_branch" className = "block" variant="outlined"></TextField></div>
                  </div>
 
                  <br></br>
@@ -95,15 +110,30 @@ export default class Clmain extends Component
                      <div className = "col-md-3"></div>
                      <div className = "col-md-3"></div>
                      <div className = "col-md-3">Claim User</div>
-                     <div className = "col-md-3"><TextField className = "block" label="Claim User" variant="outlined"></TextField></div>
+                     <div className = "col-md-3"><TextField disabled id = "clmn_user" className = "block" variant="outlined"></TextField></div>
                  </div>
 
                  <br></br>
                  <div className = "row">
                      <div className = "col-md-3">Language</div>
-                     <div className = "col-md-3"><TextField className = "block" label="Language" variant="outlined"></TextField></div>
+                     <div className = "col-md-3">
+                         {/* <TextField className = "block" label="Language" variant="outlined"></TextField> */}
+                         <Select value = {SelectedLanguage} label = "Language" className = "block">
+                             <MenuItem value={"Sinhala"}>Sinhala</MenuItem>
+                             <MenuItem value={"English"}>English</MenuItem>
+                             <MenuItem value={"Tamil"}>Tamil</MenuItem>
+                         </Select>
+                     </div>
                      <div className = "col-md-3">Accident Zone</div>
-                     <div className = "col-md-3"><TextField className = "block" label="Accident Zone" variant="outlined"></TextField></div>
+                     <div className = "col-md-3">
+                         {/* <TextField className = "block" label="Accident Zone" variant="outlined"></TextField> */}
+                         <Select value = {selectedaccidentzone} label = "Accident Zone" className = "block">
+                             <MenuItem value={"CITY"}>CITY</MenuItem>
+                             <MenuItem value={"OTHER"}>OTHER</MenuItem>
+                             <MenuItem value={"OUTSTATION"}>OUTSTATION</MenuItem>
+                             <MenuItem value={"SUBURB"}>SUBURB</MenuItem>
+                         </Select>
+                     </div>
                  </div>
                  
                  <br></br>
