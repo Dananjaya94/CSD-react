@@ -75,8 +75,11 @@ $(document).ready(function (){
                 $('#refnumber').val(refcol);
                 $('#suminsurd').val(sumcol);
                 $('#polperiodfrom').val(polperiofromcol);
+                localStorage.setItem('policyfrom',JSON.stringify(polperiofromcol));
                 $('#polperiodto').val(polperiodtocol);
+                localStorage.setItem('policyto',JSON.stringify(polperiodtocol));
                 $('#nameofinsured').val(nameofinsuredcol);
+                localStorage.setItem('nameinsured',JSON.stringify(nameofinsuredcol));
                 $('#addessofinsured').val(addressofinsuredcol);
                 $('#makeandmodel').val(makecol);
                 $('#chassinum').val(chassicol);
@@ -89,6 +92,7 @@ $(document).ready(function (){
                 $('#totalrefunds').val(vhnumcol);
                 $('#policybranch').val(vhnumcol);
                 $('#policyme').val(policymecol);
+                localStorage.setItem('marketingexec',JSON.stringify(policymecol));
                 $('#vehtype').val(vehicletypecol);
                 $('#fueltype').val(fueltypecol);
 
