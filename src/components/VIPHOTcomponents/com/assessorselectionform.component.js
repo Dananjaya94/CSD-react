@@ -11,7 +11,7 @@ var asRows = [];
 var outcolls = [];
 var outrowsss = [];
 
-var col1,col2;
+var col1,col2,col6;
 
 
 $.ajax({
@@ -105,12 +105,14 @@ $(document).ready(function (){
          
          col1=currentRow.find("td:eq(0)").html(); // get current row 1st TD value
          col2=currentRow.find("td:eq(1)").text();
+         col6=currentRow.find("td:eq(5)").text();
     
          $('#selectedassessor').val(col1);
          $('#selectedassessorname').val(col2);
 
          localStorage.setItem('assessorcode',JSON.stringify(col1));
          localStorage.setItem('assessorname',JSON.stringify(col2));
+         localStorage.setItem('assessorcontact',JSON.stringify(col6));
          
     
     });

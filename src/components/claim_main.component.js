@@ -74,6 +74,7 @@ $(document).ready(function (){
                 $('#policynum').val(polcol);
                 $('#refnumber').val(refcol);
                 $('#suminsurd').val(sumcol);
+                localStorage.setItem('suminsurd',JSON.stringify(sumcol));
                 $('#polperiodfrom').val(polperiofromcol);
                 localStorage.setItem('policyfrom',JSON.stringify(polperiofromcol));
                 $('#polperiodto').val(polperiodtocol);

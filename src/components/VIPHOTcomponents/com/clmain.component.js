@@ -1,8 +1,33 @@
 import React, {Component} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import $ from 'jquery';
 
+var clmain_vhnumcol,clmain_polcol,clmain_nameofinsuredcol,clmain_policymecol,clmain_polperiofromcol,clmain_polperiodtocol,clmain_policymecontactcol,clmain_sumcol;
 var f;
+
+$(document).ready(function (){
+    clmain_vhnumcol = JSON.parse(localStorage.getItem('entrval'));
+    clmain_polcol = JSON.parse(localStorage.getItem('selectedpolicynumber'));
+    f = new Date();
+    f = f.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    clmain_nameofinsuredcol = JSON.parse(localStorage.getItem('nameinsured'));
+    clmain_policymecol = JSON.parse(localStorage.getItem('marketingexec'));
+    clmain_polperiofromcol = JSON.parse(localStorage.getItem('policyfrom'));
+    clmain_polperiodtocol = JSON.parse(localStorage.getItem('policyto'));
+    clmain_policymecontactcol = JSON.parse(localStorage.getItem('assessorcontact'));
+    clmain_sumcol = JSON.parse(localStorage.getItem('suminsurd'));
+    
+
+    $('#clmn_vehinum').val(clmain_vhnumcol);
+    $('#clmn_polnum').val(clmain_polcol);
+    $('#clmn_cldate').val(f);
+    $('#clmn_nminsured').val(clmain_nameofinsuredcol);
+    $('#clmn_mrkexec').val(clmain_policymecol);
+    $('#clmn_datefromto').val(clmain_polperiofromcol + "/" + clmain_polperiodtocol);
+    $('#clmn_execontactnum').val(clmain_policymecontactcol);
+    $('#clmn_suminsurd').val(clmain_sumcol);
+});
 
 export default class Clmain extends Component
 {
@@ -19,34 +44,34 @@ export default class Clmain extends Component
                      <div className = "col-md-3">Availiable Claim Number</div>
                      <div className = "col-md-3"><TextField className = "block" label="Claim Number" variant="outlined"></TextField></div>
                      <div className = "col-md-3">Vehicle Number</div>
-                     <div className = "col-md-3"><TextField className = "block" label="Vehicle Number" variant="outlined"></TextField></div>
+                     <div className = "col-md-3"><TextField disabled id = "clmn_vehinum" className = "block" variant="outlined"></TextField></div>
                  </div>
                  <br></br>
                  <div className = "row">
                      <div className = "col-md-3">Policy Number</div>
-                     <div className = "col-md-3"><TextField className = "block" label="Policy Number" variant="outlined"></TextField></div>
+                     <div className = "col-md-3"><TextField disabled id = "clmn_polnum" className = "block" variant="outlined"></TextField></div>
                      <div className = "col-md-3">Claim Date</div>
-                     <div className = "col-md-3"><TextField className = "block" label="Claim Date" variant="outlined"></TextField></div>
+                     <div className = "col-md-3"><TextField disabled id = "clmn_cldate" className = "block" variant="outlined"></TextField></div>
                  </div>
                  <br></br>
                  <div className = "row">
                      <div className = "col-md-3">Name of Insured</div>
-                     <div className = "col-md-3"><TextField className = "block" label="Name of Insured" variant="outlined"></TextField></div>
+                     <div className = "col-md-3"><TextField disabled id = "clmn_nminsured" className = "block" variant="outlined"></TextField></div>
                      <div className = "col-md-3">Marketing Executive</div>
-                     <div className = "col-md-3"><TextField className = "block" label="Marketing Executive" variant="outlined"></TextField></div>
+                     <div className = "col-md-3"><TextField disabled id = "clmn_mrkexec" className = "block" variant="outlined"></TextField></div>
                  </div>
                  <br></br>
                  <div className = "row">
                      <div className = "col-md-3">Period From / Period To</div>
-                     <div className = "col-md-3"><TextField className = "block" label="Period From / Period To" variant="outlined"></TextField></div>
+                     <div className = "col-md-3"><TextField disabled id = "clmn_datefromto" className = "block" variant="outlined"></TextField></div>
                      <div className = "col-md-3">Marketing Executive Contact Number</div>
-                     <div className = "col-md-3"><TextField className = "block" label="M E Contact Number" variant="outlined"></TextField></div>
+                     <div className = "col-md-3"><TextField disabled id = "clmn_execontactnum" className = "block" variant="outlined"></TextField></div>
                  </div>
 
                  <br></br>
                  <div className = "row">
                      <div className = "col-md-3">Sum Of Insured</div>
-                     <div className = "col-md-3"><TextField className = "block" label="Sum Of Insured" variant="outlined"></TextField></div>
+                     <div className = "col-md-3"><TextField disabled id = "clmn_suminsurd" className = "block" variant="outlined"></TextField></div>
                      <div className = "col-md-3">Claim Amount</div>
                      <div className = "col-md-3"><TextField className = "block" label="Claim Amount" variant="outlined"></TextField></div>
                  </div>

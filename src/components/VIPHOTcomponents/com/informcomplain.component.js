@@ -1,7 +1,32 @@
 import React, {Component} from 'react';
+import $ from 'jquery';
+
 
 export default class InformComplain extends Component
 {
+    constructor(props)
+    {
+        super(props);
+
+        this.state = {
+            
+            clmain_refcol:'',
+            clmain_addressofinsuredcol:'',
+            clmain_makecol:'',
+            clmain_chassicol:'',
+            clmain_covernotecol:'',
+            clmain_checkretcol:'',
+            clmain_enginenumcol:'',
+            clmain_yearofmakecol:'',
+            clmain_deboutstandingcol:'',
+            clmain_policyremarkcol:'',
+            clmain_totalrefundcol:'',
+            clmain_policybranchcol:'',
+            clmain_vehicletypecol:'',
+            clmain_fueltypecol:''
+        }
+    }
+
     render() {
         return (
              <div className = "container">
