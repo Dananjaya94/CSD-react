@@ -3,6 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import $ from 'jquery';
 
@@ -10,6 +11,12 @@ var clmain_vhnumcol,clmain_polcol,clmain_nameofinsuredcol,clmain_policymecol,clm
 var f,t;
 var thours , tminutes , tseconds;
 var SelectedLanguage,selectedaccidentzone;
+
+var waymeta = [];
+var wayrows = [];
+
+var stsreasonmeta = [];
+var statreasondata = []
 
 $(document).ready(function (){
     clmain_vhnumcol = JSON.parse(localStorage.getItem('entrval'));
@@ -42,11 +49,128 @@ $(document).ready(function (){
     $('#clmn_time').val(clmain_time);
     $('#clmn_branch').val(clmain_branch);
     $('#clmn_user').val(clmain_user);
+
+    $.ajax({
+        type: "GET",
+    
+            url: "http://localhost:4000/getway/:id",
+            contentType: "application/json",
+            dataType: "json",
+            beforeSend: function () {
+            },
+    
+            success: function (data) {
+    
+    
+    
+                //console.log(data);
+    
+                      $.each(data, function (index, value) {
+    
+                        wayrows = [];
+                        waymeta= [];
+    
+                          console.log(value);
+                          for (var o in value.metaData) {
+                            waymeta.push(value.metaData[o]);
+                          }
+    
+                          for (var i in value.rows) {
+                              
+                            wayrows.push(value.rows[i][0]);
+                          }
+                          console.log(wayrows);
+                      })
+          },
+    
+          error: function (jqXHR, exception) {
+    
+          }
+    
+    });
+
+    $.ajax({
+        type: "GET",
+    
+            url: "http://localhost:4000/claimstatusreason/:id",
+            contentType: "application/json",
+            dataType: "json",
+            beforeSend: function () {
+            },
+    
+            success: function (data) {
+    
+    
+    
+                //console.log(data);
+    
+                      $.each(data, function (index, value) {
+    
+                        statreasondata = [];
+                        stsreasonmeta= [];
+    
+                          console.log(value);
+                          for (var o in value.metaData) {
+                            stsreasonmeta.push(value.metaData[o]);
+                          }
+    
+                          for (var i in value.rows) {
+                              
+                            statreasondata.push(value.rows[i][0]);
+                          }
+                          console.log(statreasondata);
+                      })
+          },
+    
+          error: function (jqXHR, exception) {
+    
+          }
+    
+    });
 });
 
 export default class Clmain extends Component
 {
+    constructor(props)
+    {
+        super(props);
+
+        this.renderMenuItem = this.renderMenuItem.bind(this);
+
+    }
+
+    renderMenuItem()
+    {
+        for(var we in statreasondata)
+        {
+            console.log(we);
+        }
+        for (var o in statreasondata) {
+            return (
+            <MenuItem value = {statreasondata[o]}>{statreasondata[o]}</MenuItem>
+            );
+          }
+    }
+
+    renderData(OutBoundDT){
+        let tableContent = (OutBoundDT === undefined || OutBoundDT === null || OutBoundDT.length === 0) ? null : (
+            OutBoundDT.data.map((item) => {
+                return (
+                    <MenuItem value = {item}>{item}</MenuItem>
+                );
+            })
+        );
+    
+        return (
+            <Select label = "Accident Zone" className = "block">
+                {tableContent}
+            </Select>
+           
+        );
+    }
+
     render() {
+        let content = this.renderData(statreasondata);
         return (
              <div className = "container">
                  <div className = "row">
@@ -164,19 +288,51 @@ export default class Clmain extends Component
                  <h3 style = {{textAlign:"left"}}>Suggections : </h3>
                  <div className = "row">
                      <div className = "col-md-3">Way</div>
-                     <div className = "col-md-9"><TextField className = "block"  label="Way" variant="outlined"></TextField></div>
+                     <div className = "col-md-9">
+                         {/* <TextField className = "block"  label="Way" variant="outlined"></TextField> */}
+                         <Autocomplete
+                                id = "combo-box-demo2"
+                                options = {["Normal Way","High Way"]}
+                                style = {{ width: 190}}
+                                onChange={(event, newInputValue) => {
+                                    this.setState({
+                                        // outbound_Serial_No: newInputValue
+                                    })
+                                  }}
+                                renderInput={(params1) => <TextField {...params1} label="Way" variant="outlined"></TextField>}></Autocomplete>
+                     </div>
                  </div>
 
                  <br></br>
                  <div className = "row">
                      <div className = "col-md-3">Event</div>
-                     <div className = "col-md-9"><TextField className = "block"  label="Event" variant="outlined"></TextField></div>
+                     <div className = "col-md-9">
+                         {/* <TextField className = "block"  label="Event" variant="outlined"></TextField> */}
+                         <Autocomplete
+                                id = "combo-box-demo3"
+                                options = {["Accident","Other"]}
+                                style = {{ width: 190}}
+                                onChange={(event, newInputValue) => {
+                                    this.setState({
+                                        // outbound_Serial_No: newInputValue
+                                    })
+                                  }}
+                                renderInput={(params1) => <TextField {...params1} label="Event" variant="outlined"></TextField>}></Autocomplete>
+                     </div>
                  </div>
 
                  <br></br>
                  <div className = "row">
                      <div className = "col-md-3">Claim Status Reason</div>
-                     <div className = "col-md-9"><TextField className = "block"  label="Claim Status Reason" variant="outlined"></TextField></div>
+                     <div className = "col-md-9">
+                         {/* <TextField className = "block"  label="Claim Status Reason" variant="outlined"></TextField> */}
+                         {/* <Select label = "Accident Zone" className = "block">
+                             {/* <MenuItem value={"CITY"}>CITY</MenuItem>
+                             statreasondata */}
+                             {/* {this.renderMenuItem()} */}
+                         {/* </Select> */}
+                         {content}
+                     </div>
                  </div>
 
                  <br></br>
