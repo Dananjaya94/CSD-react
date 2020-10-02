@@ -170,6 +170,7 @@ export default class Clmain extends Component
     }
 
     render() {
+        console.log(statreasondata);
         let content = this.renderData(statreasondata);
         return (
              <div className = "container">
