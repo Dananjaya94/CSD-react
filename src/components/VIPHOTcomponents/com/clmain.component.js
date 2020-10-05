@@ -4,8 +4,10 @@ import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import Label from '@material-ui/core/FormLabel';
 
 import $ from 'jquery';
+import axios from 'axios';
 
 var clmain_vhnumcol,clmain_polcol,clmain_nameofinsuredcol,clmain_policymecol,clmain_polperiofromcol,clmain_polperiodtocol,clmain_policymecontactcol,clmain_sumcol,clmain_time,clmain_branch,clmain_user;
 var f,t;
@@ -89,44 +91,44 @@ $(document).ready(function (){
     
     });
 
-    $.ajax({
-        type: "GET",
+    // $.ajax({
+    //     type: "GET",
     
-            url: "http://localhost:4000/claimstatusreason/:id",
-            contentType: "application/json",
-            dataType: "json",
-            beforeSend: function () {
-            },
+    //         url: "http://localhost:4000/claimstatusreason/:id",
+    //         contentType: "application/json",
+    //         dataType: "json",
+    //         beforeSend: function () {
+    //         },
     
-            success: function (data) {
+    //         success: function (data) {
     
     
     
-                //console.log(data);
+    //             //console.log(data);
     
-                      $.each(data, function (index, value) {
+    //                   $.each(data, function (index, value) {
     
-                        statreasondata = [];
-                        stsreasonmeta= [];
+    //                     statreasondata = [];
+    //                     stsreasonmeta= [];
     
-                          console.log(value);
-                          for (var o in value.metaData) {
-                            stsreasonmeta.push(value.metaData[o]);
-                          }
+    //                       console.log(value);
+    //                       for (var o in value.metaData) {
+    //                         stsreasonmeta.push(value.metaData[o]);
+    //                       }
     
-                          for (var i in value.rows) {
+    //                       for (var i in value.rows) {
                               
-                            statreasondata.push(value.rows[i][0]);
-                          }
-                          console.log(statreasondata);
-                      })
-          },
+    //                         statreasondata.push(value.rows[i][0]);
+    //                       }
+    //                       console.log(statreasondata);
+    //                   })
+    //       },
     
-          error: function (jqXHR, exception) {
+    //       error: function (jqXHR, exception) {
     
-          }
+    //       }
     
-    });
+    // });
 });
 
 export default class Clmain extends Component
@@ -135,9 +137,71 @@ export default class Clmain extends Component
     {
         super(props);
 
+        this.state = {
+            claimstatreasondata : [],
+            abbreviationdata : [],
+            abbreviationdt : [],
+            OutBoundDT : [],
+            ContactNumber : '',
+            offeredstatdata : [],
+            offeredstatdt : [],
+        }
+
         this.renderMenuItem = this.renderMenuItem.bind(this);
+        this.OnContcatNumberChange = this.OnContcatNumberChange.bind(this);
+        this.AbbreviationData = this.AbbreviationData.bind(this);
 
     }
+
+    componentDidMount()
+    {
+        axios.get('http://localhost:4000/claimstatusreason/:id')
+        .then(data=> {
+            this.setState({claimstatreasondata : data.data});
+            console.log(data);
+        })
+        .catch(function (error){
+            console.log(error);
+        })
+
+        axios.get('http://localhost:4000/abbreviation/:id')
+        .then(data=> {
+            this.setState({abbreviationdata : data.data});
+            console.log(data);
+        })
+        .catch(function (error){
+            console.log(error);
+        })
+
+        axios.get('http://localhost:4000/offeredstatus/:id')
+        .then(data=> {
+            this.setState({offeredstatdata : data.data});
+            console.log(data);
+        })
+        .catch(function (error){
+            console.log(error);
+        })
+    }
+
+    OnContcatNumberChange(e)
+    {
+
+        this.setState({
+            ContactNumber: e.target.value
+        });
+    }
+
+    activateConfirmTextBox()
+    {
+        if(this.state.ContactNumber.length === 10)
+        {
+            return(
+                <TextField id = "confirmationfield" className = "block"  label="SMS Number" variant="outlined"></TextField>
+            );     
+        }
+    }
+
+
 
     renderMenuItem()
     {
@@ -153,10 +217,11 @@ export default class Clmain extends Component
     }
 
     renderData(OutBoundDT){
+        // console.log(OutBoundDT);
         let tableContent = (OutBoundDT === undefined || OutBoundDT === null || OutBoundDT.length === 0) ? null : (
-            OutBoundDT.data.map((item) => {
+            OutBoundDT.result.rows.map((item) => {
                 return (
-                    <MenuItem value = {item}>{item}</MenuItem>
+                    <MenuItem key = {item} value = {item}>{item}</MenuItem>
                 );
             })
         );
@@ -169,9 +234,47 @@ export default class Clmain extends Component
         );
     }
 
+    AbbreviationData(abbreviationdt){
+        // console.log(abbreviationdt);
+        let tableContent = (abbreviationdt === undefined || abbreviationdt === null || abbreviationdt.length === 0) ? null : (
+            abbreviationdt.result.rows.map((item) => {
+                return (
+                    <MenuItem key = {item} value = {item}>{item}</MenuItem>
+                );
+            })
+        );
+    
+        return (
+            <Select label = "Abbreviation" className = "block">
+                {tableContent}
+            </Select>
+           
+        );
+    }
+
+    rendorOfferedStatData(offeredstatdt){
+        console.log(offeredstatdt);
+        let tableContent = (offeredstatdt === undefined || offeredstatdt === null || offeredstatdt.length === 0) ? null : (
+            offeredstatdt.result.rows.map((item) => {
+                return (
+                    <MenuItem key = {item} value = {item}>{item}</MenuItem>
+                );
+            })
+        );
+    
+        return (
+            <Select label = "Offered Status" className = "block">
+                {tableContent}
+            </Select>
+           
+        );
+    }
+
     render() {
-        console.log(statreasondata);
-        let content = this.renderData(statreasondata);
+        let content = this.renderData(this.state.claimstatreasondata);
+        let txtInit = this.activateConfirmTextBox();
+        let abbdata = this.AbbreviationData(this.state.abbreviationdata);
+        let offdata = this.rendorOfferedStatData(this.state.offeredstatdata);
         return (
              <div className = "container">
                  <div className = "row">
@@ -260,11 +363,18 @@ export default class Clmain extends Component
                          </Select>
                      </div>
                  </div>
+
+                 <br></br>
+                 <div className = "row">
+                     <div className = "col-md-3">Contact Number</div>
+                     <div className = "col-md-6"><TextField className = "block"  label="Contact Number " variant="outlined" onChange = {this.OnContcatNumberChange}></TextField></div>
+                     <div className = "col-md-3"><Label style = {{color:"red"}}>Need 10 Characters (*)</Label></div>
+                 </div>
                  
                  <br></br>
                  <div className = "row">
                      <div className = "col-md-3">SMS Notification Send Number</div>
-                     <div className = "col-md-9"><TextField className = "block"  label="SMS Number" variant="outlined"></TextField></div>
+        <div className = "col-md-9">{txtInit}</div>
                  </div>
 
                  <br></br>
@@ -339,13 +449,13 @@ export default class Clmain extends Component
                  <br></br>
                  <div className = "row">
                      <div className = "col-md-3">Abbreviation</div>
-                     <div className = "col-md-9"><TextField variant = "filled" className = "block"  label="Abbreviation" variant="outlined"></TextField></div>
+                     <div className = "col-md-9">{abbdata}</div>
                  </div>
 
                  <br></br>
                  <div className = "row">
                      <div className = "col-md-3">Offered Status</div>
-                     <div className = "col-md-9"><TextField className = "block"  label="Offered Status" variant="outlined"></TextField></div>
+                     <div className = "col-md-9">{offdata}</div>
                  </div>
                  <br></br>
                  <div className = "row">
