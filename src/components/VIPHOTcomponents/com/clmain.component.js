@@ -6,6 +6,14 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Label from '@material-ui/core/FormLabel';
 
+import Grid from '@material-ui/core/Grid';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
+
 import $ from 'jquery';
 import axios from 'axios';
 
@@ -13,6 +21,7 @@ var clmain_vhnumcol,clmain_polcol,clmain_nameofinsuredcol,clmain_policymecol,clm
 var f,t;
 var thours , tminutes , tseconds;
 var SelectedLanguage,selectedaccidentzone;
+var selectedassessorcode , selectedassessorname;
 
 var waymeta = [];
 var wayrows = [];
@@ -39,6 +48,11 @@ $(document).ready(function (){
     tseconds = t.getSeconds();
 
     clmain_time = thours+":"+tminutes+":"+tseconds;
+    selectedassessorcode = JSON.parse(localStorage.getItem('assessorcode'));
+    selectedassessorname = JSON.parse(localStorage.getItem('assessorname'));
+
+    $('#sltdassessor').val(selectedassessorcode);
+    $('#sltdassessorname').val(selectedassessorname);
 
     $('#clmn_vehinum').val(clmain_vhnumcol);
     $('#clmn_polnum').val(clmain_polcol);
@@ -145,6 +159,12 @@ export default class Clmain extends Component
             ContactNumber : '',
             offeredstatdata : [],
             offeredstatdt : [],
+            vehicledata : [],
+            vehicledt : [],
+            damagecatdata : [],
+            damagecatdt : [],
+            policystationdata : [],
+            policystationdt : [],
         }
 
         this.renderMenuItem = this.renderMenuItem.bind(this);
@@ -153,7 +173,7 @@ export default class Clmain extends Component
 
     }
 
-    componentDidMount()
+    componentWillMount()
     {
         axios.get('http://localhost:4000/claimstatusreason/:id')
         .then(data=> {
@@ -176,6 +196,33 @@ export default class Clmain extends Component
         axios.get('http://localhost:4000/offeredstatus/:id')
         .then(data=> {
             this.setState({offeredstatdata : data.data});
+            console.log(data);
+        })
+        .catch(function (error){
+            console.log(error);
+        })
+        
+        axios.get('http://localhost:4000/vehicletype/:id')
+        .then(data=> {
+            this.setState({vehicledata : data.data});
+            console.log(data);
+        })
+        .catch(function (error){
+            console.log(error);
+        })
+
+        axios.get('http://localhost:4000/damagegroupcat/:id')
+        .then(data=> {
+            this.setState({damagecatdata : data.data});
+            console.log(data);
+        })
+        .catch(function (error){
+            console.log(error);
+        })
+
+        axios.get('http://localhost:4000/policystation/:id')
+        .then(data=> {
+            this.setState({policystationdata : data.data});
             console.log(data);
         })
         .catch(function (error){
@@ -270,11 +317,68 @@ export default class Clmain extends Component
         );
     }
 
+    renderVehicleTypeData(vehicledt)
+    {
+        let tableContent = (vehicledt === undefined || vehicledt === null || vehicledt.length === 0) ? null : (
+            vehicledt.result.rows.map((item) => {
+                return (
+                    <MenuItem key = {item} value = {item}>{item}</MenuItem>
+                );
+            })
+        );
+    
+        return (
+            <Select label = "Vehicle Type" className = "block">
+                {tableContent}
+            </Select>
+           
+        );
+    }
+
+    renderDamageCat(damagecatdt)
+    {
+        let tableContent = (damagecatdt === undefined || damagecatdt === null || damagecatdt.length === 0) ? null : (
+            damagecatdt.result.rows.map((item) => {
+                return (
+                    <MenuItem key = {item} value = {item}>{item}</MenuItem>
+                );
+            })
+        );
+    
+        return (
+            <Select label = "Damage Category" className = "block">
+                {tableContent}
+            </Select>
+           
+        );
+    }
+
+    renderPolicyStation(policystationdt)
+    {
+        let tableContent = (policystationdt === undefined || policystationdt === null || policystationdt.length === 0) ? null : (
+            policystationdt.result.rows.map((item) => {
+                return (
+                    <MenuItem key = {item} value = {item}>{item}</MenuItem>
+                );
+            })
+        );
+    
+        return (
+            <Select label = "Policy Station" className = "block">
+                {tableContent}
+            </Select>
+           
+        );
+    }
+
     render() {
         let content = this.renderData(this.state.claimstatreasondata);
         let txtInit = this.activateConfirmTextBox();
         let abbdata = this.AbbreviationData(this.state.abbreviationdata);
         let offdata = this.rendorOfferedStatData(this.state.offeredstatdata);
+        let vhldata = this.renderVehicleTypeData(this.state.vehicledata);
+        let damdata = this.renderDamageCat(this.state.damagecatdata);
+        let poldata = this.renderPolicyStation(this.state.policystationdata);
         return (
              <div className = "container">
                  <div className = "row">
@@ -460,7 +564,7 @@ export default class Clmain extends Component
                  <br></br>
                  <div className = "row">
                      <div className = "col-md-3">Vehicle Type</div>
-                     <div className = "col-md-9"><TextField className = "block"  label="Vehicle Type" variant="outlined"></TextField></div>
+                            <div className = "col-md-9">{vhldata}</div>
                  </div>
                  <br></br>
                  <div className = "row">
@@ -470,12 +574,17 @@ export default class Clmain extends Component
                  <br></br>
                  <div className = "row">
                      <div className = "col-md-3">Damage Grouping Category</div>
-                     <div className = "col-md-9"><TextField className = "block"  label="Damage Grouping Category" variant="outlined"></TextField></div>
+                     <div className = "col-md-9">{damdata}</div>
                  </div>
                  <br></br>
                  <div className = "row">
                      <div className = "col-md-3">Customer SMS Send</div>
-                     <div className = "col-md-9"><TextField className = "block"  label="Customer SMS Send" variant="outlined"></TextField></div>
+                     <div className = "col-md-9">
+                         <Select className = "block">
+                             <MenuItem key = "Y" value = "Y">Y</MenuItem>
+                             <MenuItem key = "N" value = "N">N</MenuItem>
+                         </Select>
+                     </div>
                  </div>
                  <br></br>
                  <div className = "row">
@@ -553,12 +662,18 @@ export default class Clmain extends Component
                  <br></br>
                  <div className = "row">
                      <div className = "col-md-3">Other Party  Insurer</div>
-                     <div className = "col-md-9"><TextField className = "block"  label="Other Party Insurer" variant="outlined"></TextField></div>
+                     <div className = "col-md-9">
+                         <Select className = "block">
+                             <MenuItem key = "CEYLINCO" value = "CEYLINCO">CEYLINCO</MenuItem>
+                             <MenuItem key = "NON-CEYLINCO" value = "NON-CEYLINCO">NON-CEYLINCO</MenuItem>
+                             <MenuItem key = "OTHER" value = "OTHER">OTHER</MenuItem>
+                         </Select>
+                     </div>
                  </div>
                  <br></br>
                  <div className = "row">
                      <div className = "col-md-3">Other Party Vehicle Type</div>
-                     <div className = "col-md-9"><TextField className = "block"  label="Other Party Vehicle Type" variant="outlined"></TextField></div>
+                            <div className = "col-md-9">{vhldata}</div>
                  </div>
                  <br></br>
                  <div className = "row">
@@ -578,17 +693,19 @@ export default class Clmain extends Component
                  <br></br>
                  <div className = "row">
                      <div className = "col-md-3">Policy Station</div>
-                     <div className = "col-md-9"><TextField className = "block"  label="Policy Station" variant="outlined"></TextField></div>
+                     <div className = "col-md-9">{poldata}</div>
                  </div>
                  <br></br>
                  <div className = "row">
                      <div className = "col-md-3">Assessor</div>
-                     <div className = "col-md-9"><TextField className = "block"  label="Assessor" variant="outlined"></TextField></div>
+                     <div className = "col-md-5"><TextField disabled id = "sltdassessor" className = "block"  variant="outlined"></TextField></div>
+                     <div className = "col-md-4"><TextField id = "sltdassessorname" className = "block"  variant="outlined"></TextField></div>
                  </div>
                  <br></br>
                  <div className = "row">
                      <div className = "col-md-3">Assessor Reach Date</div>
-                     <div className = "col-md-9"><TextField className = "block"  label="Assessor Reach Date" variant="outlined"></TextField></div>
+                     <div className = "col-md-6"><TextField className = "block"  label="Assessor Reach Date" variant="outlined"></TextField></div>
+                     <div className = "col-md-3"><Label>DD/MM/YYYY</Label></div>
                  </div>
                  <br></br>
                  <div className = "row">
