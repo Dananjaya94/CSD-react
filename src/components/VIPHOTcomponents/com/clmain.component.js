@@ -6,13 +6,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Label from '@material-ui/core/FormLabel';
 
-import Grid from '@material-ui/core/Grid';
-import DateFnsUtils from '@date-io/date-fns';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
 
 import $ from 'jquery';
 import axios from 'axios';
@@ -26,7 +19,6 @@ var selectedassessorcode , selectedassessorname;
 var waymeta = [];
 var wayrows = [];
 
-var stsreasonmeta = [];
 var statreasondata = []
 
 $(document).ready(function (){
@@ -145,6 +137,7 @@ $(document).ready(function (){
     // });
 });
 
+
 export default class Clmain extends Component
 {
     constructor(props)
@@ -165,6 +158,56 @@ export default class Clmain extends Component
             damagecatdt : [],
             policystationdata : [],
             policystationdt : [],
+
+            claimnumber : '',
+            vehiclenumber : '',
+            policynumber : '',
+            claimdate : '',
+            nameofinsured : '',
+            marketingexecutive : '',
+            paeriodfromto : '',
+            marketingexecutivecontact : '',
+            suminsured : '',
+            claimamount : '',
+            claimtime : '',
+            hospitalname : '',
+            claimbranch : '',
+            claimuser : '',
+            language : '',
+            accidentzone : '',
+            contactnumb : '',
+            contactnumbconfirmation : '',
+            claimlocation : '',
+            nearesttown : '',
+            assessorbranchcode : '',
+            way : '',
+            event : '',
+            claimstatus : '',
+            abbreviation : '',
+            offeredstatus : '',
+            vehicletype : '',
+            claimdamage : '',
+            damagecategory : '',
+            customerssmssend : '',
+            smsdocumentnumber : '',
+            drivinglicensenumber : '',
+            drivername : '',
+            driveraddress : '',
+            drivercontact : '',
+            ownerrelationship : '',
+            thrdpartyname : '',
+            thrdpartyaddress : '',
+            thrdpartycontactnumber : '',
+            thrdpartyvehiclenumber : '',
+            thrdpartyinsurer : '',
+            thrdpartyvehicletype : '',
+            thrdpartyvouchernumber : '',
+            thrdpartyvouchervalue : '',
+            thrdpartyrenevaldate : '',
+            thrdpartypolicystation : '',
+            assessorreachdate : '',
+            assessorreachtime : '',
+            assessordelayreason : '',
         }
 
         this.renderMenuItem = this.renderMenuItem.bind(this);
@@ -172,6 +215,321 @@ export default class Clmain extends Component
         this.AbbreviationData = this.AbbreviationData.bind(this);
 
     }
+
+    onchangeclaimnumber(e)
+    {
+        this.setState({
+            claimnumber: e.target.value
+        });
+    }
+    onchangevehiclenumber(e)
+    {
+        this.setState({
+            vehiclenumber:e.target.value
+        });
+    }
+    onchangepolicynumber(e)
+    {
+        this.setState({
+            policynumber:e.target.value
+        });
+    }
+    onchangeclaimdate(e)
+    {
+        this.setState({
+            claimdate:e.target.value
+        });
+    }
+    onchangenameofinsured(e)
+    {
+        this.setState({
+            nameofinsured:e.target.value
+        });
+    }
+    onchangemarketingexecutive(e)
+    {
+        this.setState({
+            marketingexecutive:e.target.value
+        });
+    }
+    onchangepaeriodfromto(e)
+    {
+        this.setState({
+            paeriodfromto:e.target.value
+        });
+    }
+    onchangemarketingexecutivecontact(e)
+    {
+        this.setState({
+            marketingexecutivecontact:e.target.value
+        });
+    }
+    onchangesuminsured(e)
+    {
+        this.setState({
+            suminsured:e.target.value
+        });
+    }
+    onchangeclaimamount(e)
+    {
+        this.setState({
+            claimamount:e.target.value
+        });
+    }
+    onchangeclaimtime(e)
+    {
+        this.setState({
+            claimtime:e.target.value
+        });
+    }
+    onchangehospitalname(e)
+    {
+        this.setState({
+            hospitalname:e.target.value
+        });
+    }
+    onchangeclaimbranch(e)
+    {
+        this.setState({
+            claimbranch:e.target.value
+        });
+    }
+    onchangeclaimuser(e)
+    {
+        this.setState({
+            claimuser:e.target.value
+        });
+    }
+    onchangelanguage(e)
+    {
+        this.setState({
+            language:e.target.value
+        });
+    }
+    onchangeaccidentzone(e)
+    {
+        this.setState({
+            accidentzone:e.target.value
+        });
+    }
+    onchangecontactnumb(e)
+    {
+        this.setState({
+            contactnumb:e.target.value
+        });
+    }
+    onchangecontactnumbconfirmation(e)
+    {
+        this.setState({
+            contactnumbconfirmation:e.target.value
+        });
+    }
+    onchangeclaimlocation(e)
+    {
+        this.setState({
+            claimlocation:e.target.value
+        });
+    }
+    onchangenearesttown(e)
+    {
+        this.setState({
+            nearesttown:e.target.value
+        });
+    }
+    onchangeassessorbranchcode(e)
+    {
+        this.setState({
+            assessorbranchcode:e.target.value
+        });
+    }
+    onchangeway(e)
+    {
+        this.setState({
+            way:e.target.value
+        });
+    }
+    onchangeevent(e)
+    {
+        this.setState({
+            event:e.target.value
+        });
+    }
+    onchangeclaimstatus(e)
+    {
+        this.setState({
+            claimstatus:e.target.value
+        });
+    }
+    onchangeabbreviation(e)
+    {
+        this.setState({
+            abbreviation:e.target.value
+        });
+    }
+    onchangeofferedstatus(e)
+    {
+        this.setState({
+            offeredstatus:e.target.value
+        });
+    }
+    onchangevehicletype(e)
+    {
+        this.setState({
+            vehicletype:e.target.value
+        });
+    }
+    onchangeclaimdamage(e)
+    {
+        this.setState({
+            claimdamage:e.target.value
+        });
+    }
+    onchangedamagecategory(e)
+    {
+        this.setState({
+            damagecategory:e.target.value
+        });
+    }
+    onchangecustomerssmssend(e)
+    {
+        this.setState({
+            customerssmssend:e.target.value
+        });
+    }
+
+    onchangesmsdocumentnumber(e)
+    {
+        this.setState({
+            smsdocumentnumber:e.target.value
+        });
+    }
+
+    onchangedrivinglicensenumber(e)
+    {
+        this.setState({
+            drivinglicensenumber:e.target.value
+        });
+    }
+
+    onchangedrivername(e)
+    {
+        this.setState({
+            drivername:e.target.value
+        });
+    }
+
+    onchangedriveraddress(e)
+    {
+        this.setState({
+            driveraddress:e.target.value
+        });
+    }
+
+    onchangedrivercontact(e)
+    {
+        this.setState({
+            drivercontact:e.target.value
+        });
+    }
+
+    onchangeownerrelationship(e)
+    {
+        this.setState({
+            ownerrelationship:e.target.value
+        });
+    }
+
+    onchangethrdpartyname(e)
+    {
+        this.setState({
+            thrdpartyname:e.target.value
+        });
+    }
+
+    onchangethrdpartyaddress(e)
+    {
+        this.setState({
+            thrdpartyaddress:e.target.value
+        });
+    }
+
+    onchangethrdpartycontactnumber(e)
+    {
+        this.setState({
+            thrdpartycontactnumber:e.target.value
+        });
+    }
+
+    onchangethrdpartyvehiclenumber(e)
+    {
+        this.setState({
+            thrdpartyvehiclenumber:e.target.value
+        });
+    }
+
+    onchangethrdpartyinsurer(e)
+    {
+        this.setState({
+            thrdpartyinsurer:e.target.value
+        });
+    }
+
+    onchangethrdpartyvehicletype(e)
+    {
+        this.setState({
+            thrdpartyvehicletype:e.target.value
+        });
+    }
+
+    onchangethrdpartyvouchernumber(e)
+    {
+        this.setState({
+            thrdpartyvouchernumber:e.target.value
+        });
+    }
+
+    onchangethrdpartyvouchervalue(e)
+    {
+        this.setState({
+            thrdpartyvouchervalue:e.target.value
+        });
+    }
+
+    onchangethrdpartyrenevaldate(e)
+    {
+        this.setState({
+            thrdpartyrenevaldate:e.target.value
+        });
+    }
+
+    onchangethrdpartypolicystation(e)
+    {
+        this.setState({
+            thrdpartypolicystation:e.target.value
+        });
+    }
+
+    onchangeassessorreachdate(e)
+    {
+        this.setState({
+            assessorreachdate:e.target.value
+        });
+    }
+
+    onchangeassessorreachtime(e)
+    {
+        this.setState({
+            assessorreachtime:e.target.value
+        });
+    }
+
+    onchangeassessordelayreason(e)
+    {
+        this.setState({
+            assessordelayreason:e.target.value
+        });
+    }
+
 
     componentWillMount()
     {
@@ -379,6 +737,7 @@ export default class Clmain extends Component
         let vhldata = this.renderVehicleTypeData(this.state.vehicledata);
         let damdata = this.renderDamageCat(this.state.damagecatdata);
         let poldata = this.renderPolicyStation(this.state.policystationdata);
+
         return (
              <div className = "container">
                  <div className = "row">
@@ -601,7 +960,7 @@ export default class Clmain extends Component
                  <br></br>
                  <div className = "row">
                      <div className = "col-md-3">Driving License Number</div>
-                     <div className = "col-md-9"><TextField className = "block"  label="Driving License Number" variant="outlined"></TextField></div>
+                     <div className = "col-md-9"><TextField color = "secondary" className = "block"  label="Driving License Number" variant="outlined"></TextField></div>
                  </div>
 
                  <br></br>
@@ -657,7 +1016,8 @@ export default class Clmain extends Component
                  <br></br>
                  <div className = "row">
                      <div className = "col-md-3">Other Party Vehicle Number</div>
-                     <div className = "col-md-9"><TextField className = "block"  label="Other Party Vehicle Number" variant="outlined"></TextField></div>
+                     <div className = "col-md-6"><TextField className = "block"  label="Other Party Vehicle Number" variant="outlined"></TextField></div>
+                     <div className = "col-md-3"><a href = "http://10.10.1.118:8080/advancesearch/" target = "_blank" rel="noopener noreferrer" className = "btn btn-danger block" style = {{height:"100%"}}>3rd party vehicle number</a></div>
                  </div>
                  <br></br>
                  <div className = "row">
@@ -704,8 +1064,8 @@ export default class Clmain extends Component
                  <br></br>
                  <div className = "row">
                      <div className = "col-md-3">Assessor Reach Date</div>
-                     <div className = "col-md-6"><TextField className = "block"  label="Assessor Reach Date" variant="outlined"></TextField></div>
-                     <div className = "col-md-3"><Label>DD/MM/YYYY</Label></div>
+                     <div className = "col-md-6"><TextField type="date" className = "block" variant="outlined"></TextField></div>
+                     <div className = "col-md-3"><Label>MM/DD/YYYY</Label></div>
                  </div>
                  <br></br>
                  <div className = "row">
