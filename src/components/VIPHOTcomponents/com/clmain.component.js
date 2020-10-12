@@ -215,10 +215,58 @@ export default class Clmain extends Component
         this.renderMenuItem = this.renderMenuItem.bind(this);
         this.OnContcatNumberChange = this.OnContcatNumberChange.bind(this);
         this.AbbreviationData = this.AbbreviationData.bind(this);
-        this.onchangeassessorcode = this.onchangeassessorcode.bind(this);
-        this.onchangeassessorname = this.onchangeassessorname.bind(this);
-        this.onchangeclaimnumber = this.onchangeclaimnumber.bind(this);
-        this.onchangevehiclenumber = this.onchangevehiclenumber.bind(this);
+
+        this.onchangeassessorcode=this.onchangeassessorcode.bind(this);
+        this.onchangeassessorname=this.onchangeassessorname.bind(this);
+        this.onchangeclaimnumber=this.onchangeclaimnumber.bind(this);
+        this.onchangevehiclenumber=this.onchangevehiclenumber.bind(this);
+        this.onchangepolicynumber=this.onchangepolicynumber.bind(this);
+        this.onchangeclaimdate=this.onchangeclaimdate.bind(this);
+        this.onchangenameofinsured=this.onchangenameofinsured.bind(this);
+        this.onchangemarketingexecutive=this.onchangemarketingexecutive.bind(this);
+        this.onchangepaeriodfromto=this.onchangepaeriodfromto.bind(this);
+        this.onchangemarketingexecutivecontact=this.onchangemarketingexecutivecontact.bind(this);
+        this.onchangesuminsured=this.onchangesuminsured.bind(this);
+        this.onchangeclaimamount=this.onchangeclaimamount.bind(this);
+        this.onchangeclaimtime=this.onchangeclaimtime.bind(this);
+        this.onchangehospitalname=this.onchangehospitalname.bind(this);
+        this.onchangeclaimbranch=this.onchangeclaimbranch.bind(this);
+        this.onchangeclaimuser=this.onchangeclaimuser.bind(this);
+        this.onchangelanguage=this.onchangelanguage.bind(this);
+        this.onchangeaccidentzone=this.onchangeaccidentzone.bind(this);
+        this.onchangecontactnumb=this.onchangecontactnumb.bind(this);
+        this.onchangecontactnumbconfirmation=this.onchangecontactnumbconfirmation.bind(this);
+        this.onchangeclaimlocation=this.onchangeclaimlocation.bind(this);
+        this.onchangenearesttown=this.onchangenearesttown.bind(this);
+        this.onchangeassessorbranchcode=this.onchangeassessorbranchcode.bind(this);
+        this.onchangeway=this.onchangeway.bind(this);
+        this.onchangeevent=this.onchangeevent.bind(this);
+        this.onchangeclaimstatus=this.onchangeclaimstatus.bind(this);
+        this.onchangeabbreviation=this.onchangeabbreviation.bind(this);
+        this.onchangeofferedstatus=this.onchangeofferedstatus.bind(this);
+        this.onchangevehicletype=this.onchangevehicletype.bind(this);
+        this.onchangeclaimdamage=this.onchangeclaimdamage.bind(this);
+        this.onchangedamagecategory=this.onchangedamagecategory.bind(this);
+        this.onchangecustomerssmssend=this.onchangecustomerssmssend.bind(this);
+        this.onchangesmsdocumentnumber(e)
+        this.onchangedrivinglicensenumber(e)
+        this.onchangedrivername(e)
+        this.onchangedriveraddress(e)
+        this.onchangedrivercontact(e)
+        this.onchangeownerrelationship(e)
+        this.onchangethrdpartyname(e)
+        this.onchangethrdpartyaddress(e)
+        this.onchangethrdpartycontactnumber(e)
+        this.onchangethrdpartyvehiclenumber(e)
+        this.onchangethrdpartyinsurer(e)
+        this.onchangethrdpartyvehicletype(e)
+        this.onchangethrdpartyvouchernumber(e)
+        this.onchangethrdpartyvouchervalue(e)
+        this.onchangethrdpartyrenevaldate(e) 
+        this.onchangethrdpartypolicystation(e)
+        this.onchangeassessorreachdate(e)
+        this.onchangeassessorreachtime(e)
+        this.onchangeassessordelayreason(e)
 
     }
 
