@@ -248,25 +248,25 @@ export default class Clmain extends Component
         this.onchangeclaimdamage=this.onchangeclaimdamage.bind(this);
         this.onchangedamagecategory=this.onchangedamagecategory.bind(this);
         this.onchangecustomerssmssend=this.onchangecustomerssmssend.bind(this);
-        this.onchangesmsdocumentnumber(e)
-        this.onchangedrivinglicensenumber(e)
-        this.onchangedrivername(e)
-        this.onchangedriveraddress(e)
-        this.onchangedrivercontact(e)
-        this.onchangeownerrelationship(e)
-        this.onchangethrdpartyname(e)
-        this.onchangethrdpartyaddress(e)
-        this.onchangethrdpartycontactnumber(e)
-        this.onchangethrdpartyvehiclenumber(e)
-        this.onchangethrdpartyinsurer(e)
-        this.onchangethrdpartyvehicletype(e)
-        this.onchangethrdpartyvouchernumber(e)
-        this.onchangethrdpartyvouchervalue(e)
-        this.onchangethrdpartyrenevaldate(e) 
-        this.onchangethrdpartypolicystation(e)
-        this.onchangeassessorreachdate(e)
-        this.onchangeassessorreachtime(e)
-        this.onchangeassessordelayreason(e)
+        this.onchangesmsdocumentnumber=this.onchangesmsdocumentnumber.bind(this);
+        this.onchangedrivinglicensenumber=this.onchangedrivinglicensenumber.bind(this);
+        this.onchangedrivername=this.onchangedrivername.bind(this);
+        this.onchangedriveraddress=this.onchangedriveraddress.bind(this);
+        this.onchangedrivercontact=this.onchangedrivercontact.bind(this);
+        this.onchangeownerrelationship=this.ownerrelationship.bind(this);
+        this.onchangethrdpartyname=this.onchangethrdpartyname.bind(this);
+        this.onchangethrdpartyaddress=this.onchangethrdpartyname.bind(this);
+        this.onchangethrdpartycontactnumber=this.onchangethrdpartycontactnumber.bind(this);
+        this.onchangethrdpartyvehiclenumber=this.onchangethrdpartyvehiclenumber.bind(this);
+        this.onchangethrdpartyinsurer=this.onchangethrdpartyinsurer.bind(this);
+        this.onchangethrdpartyvehicletype=this.onchangethrdpartyvehicletype.bind(this);
+        this.onchangethrdpartyvouchernumber=this.onchangethrdpartyvouchernumber.bind(this);
+        this.onchangethrdpartyvouchervalue=this.onchangethrdpartyvouchervalue.bind(this);
+        this.onchangethrdpartyrenevaldate=this.onchangethrdpartyrenevaldate.bind(this);
+        this.onchangethrdpartypolicystation=this.onchangethrdpartypolicystation.bind(this);
+        this.onchangeassessorreachdate=this.onchangeassessorreachdate.bind(this);
+        this.onchangeassessorreachtime=this.onchangeassessorreachtime.bind(this);
+        this.onchangeassessordelayreason=this.onchangeassessordelayreason.bind(this);
 
     }
 
