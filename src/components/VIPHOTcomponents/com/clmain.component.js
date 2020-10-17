@@ -212,7 +212,14 @@ export default class Clmain extends Component
             assessordelayreason : '',
         }
 
-        this.renderMenuItem = this.renderMenuItem.bind(this);
+        this.renderData = this.renderData.bind(this);
+        this.activateConfirmTextBox = this.activateConfirmTextBox.bind(this);
+        this.AbbreviationData = this.AbbreviationData.bind(this);
+        this.rendorOfferedStatData = this.rendorOfferedStatData.bind(this);
+        this.renderVehicleTypeData = this.renderVehicleTypeData.bind(this);
+        this.renderDamageCat = this.renderDamageCat.bind(this);
+        this.renderPolicyStation = this.renderPolicyStation.bind(this);
+
         this.OnContcatNumberChange = this.OnContcatNumberChange.bind(this);
         this.AbbreviationData = this.AbbreviationData.bind(this);
 
@@ -253,7 +260,7 @@ export default class Clmain extends Component
         this.onchangedrivername=this.onchangedrivername.bind(this);
         this.onchangedriveraddress=this.onchangedriveraddress.bind(this);
         this.onchangedrivercontact=this.onchangedrivercontact.bind(this);
-        this.onchangeownerrelationship=this.ownerrelationship.bind(this);
+        this.onchangeownerrelationship=this.onchangeownerrelationship.bind(this);
         this.onchangethrdpartyname=this.onchangethrdpartyname.bind(this);
         this.onchangethrdpartyaddress=this.onchangethrdpartyname.bind(this);
         this.onchangethrdpartycontactnumber=this.onchangethrdpartycontactnumber.bind(this);
