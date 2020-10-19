@@ -34,7 +34,6 @@ $.ajax({
                     asRows = [];
                       asCols= [];
 
-                      console.log(value);
                       for (var o in value.metaData) {
                         asCols.push(value.metaData[o]);
                       }
@@ -43,7 +42,6 @@ $.ajax({
                           
                         asRows.push(value.rows[i][0]);
                       }
-                      console.log(asRows);
                   })
       },
 
@@ -65,8 +63,7 @@ $.ajax({
         $.each(data, function (index, value) {
             outcolls = [];
             outrowsss= [];
-            console.log(value);
-            
+
             for (var o in value.metaData)
             {
                 outcolls.push(value.metaData[o]);
@@ -75,7 +72,7 @@ $.ajax({
             {
                 outrowsss.push(value.rows[i]);
             }
-            console.log(outrowsss);
+            
             
             $('#assessorselectiontable').DataTable({
                 data: outrowsss,

@@ -71,14 +71,12 @@ $(document).ready(function (){
     
     
     
-                //console.log(data);
     
                       $.each(data, function (index, value) {
     
                         wayrows = [];
                         waymeta= [];
     
-                          console.log(value);
                           for (var o in value.metaData) {
                             waymeta.push(value.metaData[o]);
                           }
@@ -87,7 +85,6 @@ $(document).ready(function (){
                               
                             wayrows.push(value.rows[i][0]);
                           }
-                          console.log(wayrows);
                       })
           },
     
@@ -110,14 +107,12 @@ $(document).ready(function (){
     
     
     
-    //             //console.log(data);
     
     //                   $.each(data, function (index, value) {
     
     //                     statreasondata = [];
     //                     stsreasonmeta= [];
     
-    //                       console.log(value);
     //                       for (var o in value.metaData) {
     //                         stsreasonmeta.push(value.metaData[o]);
     //                       }
@@ -126,7 +121,6 @@ $(document).ready(function (){
                               
     //                         statreasondata.push(value.rows[i][0]);
     //                       }
-    //                       console.log(statreasondata);
     //                   })
     //       },
     
@@ -159,20 +153,20 @@ export default class Clmain extends Component
             policystationdata : [],
             policystationdt : [],
 
-            claimnumber : '',
-            vehiclenumber : '',
-            policynumber : '',
-            claimdate : '',
-            nameofinsured : '',
-            marketingexecutive : '',
-            paeriodfromto : '',
-            marketingexecutivecontact : '',
-            suminsured : '',
-            claimamount : '',
-            claimtime : '',
-            hospitalname : '',
-            claimbranch : '',
-            claimuser : '',
+            claimnumber : null,
+            vehiclenumber : null,
+            policynumber : null,
+            claimdate : null,
+            nameofinsured : null,
+            marketingexecutive : null,
+            paeriodfromto : null,
+            marketingexecutivecontact : null,
+            suminsured : null,
+            claimamount : null,
+            claimtime : null,
+            hospitalname : null,
+            claimbranch : null,
+            claimuser : null,
             language : '',
             accidentzone : '',
             contactnumb : '',
@@ -611,7 +605,6 @@ export default class Clmain extends Component
         axios.get('http://localhost:4000/claimstatusreason/:id')
         .then(data=> {
             this.setState({claimstatreasondata : data.data});
-            console.log(data);
         })
         .catch(function (error){
             console.log(error);
@@ -620,7 +613,6 @@ export default class Clmain extends Component
         axios.get('http://localhost:4000/abbreviation/:id')
         .then(data=> {
             this.setState({abbreviationdata : data.data});
-            console.log(data);
         })
         .catch(function (error){
             console.log(error);
@@ -629,7 +621,6 @@ export default class Clmain extends Component
         axios.get('http://localhost:4000/offeredstatus/:id')
         .then(data=> {
             this.setState({offeredstatdata : data.data});
-            console.log(data);
         })
         .catch(function (error){
             console.log(error);
@@ -638,7 +629,6 @@ export default class Clmain extends Component
         axios.get('http://localhost:4000/vehicletype/:id')
         .then(data=> {
             this.setState({vehicledata : data.data});
-            console.log(data);
         })
         .catch(function (error){
             console.log(error);
@@ -647,7 +637,6 @@ export default class Clmain extends Component
         axios.get('http://localhost:4000/damagegroupcat/:id')
         .then(data=> {
             this.setState({damagecatdata : data.data});
-            console.log(data);
         })
         .catch(function (error){
             console.log(error);
@@ -656,7 +645,6 @@ export default class Clmain extends Component
         axios.get('http://localhost:4000/policystation/:id')
         .then(data=> {
             this.setState({policystationdata : data.data});
-            console.log(data);
         })
         .catch(function (error){
             console.log(error);
@@ -682,7 +670,6 @@ export default class Clmain extends Component
     }
 
     renderData(OutBoundDT){
-        // console.log(OutBoundDT);
         let tableContent = (OutBoundDT === undefined || OutBoundDT === null || OutBoundDT.length === 0) ? null : (
             OutBoundDT.result.rows.map((item) => {
                 return (
@@ -700,7 +687,6 @@ export default class Clmain extends Component
     }
 
     AbbreviationData(abbreviationdt){
-        // console.log(abbreviationdt);
         let tableContent = (abbreviationdt === undefined || abbreviationdt === null || abbreviationdt.length === 0) ? null : (
             abbreviationdt.result.rows.map((item) => {
                 return (
@@ -718,7 +704,6 @@ export default class Clmain extends Component
     }
 
     rendorOfferedStatData(offeredstatdt){
-        console.log(offeredstatdt);
         let tableContent = (offeredstatdt === undefined || offeredstatdt === null || offeredstatdt.length === 0) ? null : (
             offeredstatdt.result.rows.map((item) => {
                 return (
@@ -808,7 +793,7 @@ export default class Clmain extends Component
 
                  <div className = "row">
                      <div className = "col-md-3">Availiable Claim Number</div>
-                     <div className = "col-md-3"><TextField className = "block" value = {this.state.claimnumber} onChange = {this.onchangeclaimnumber} label="Claim Number" variant="outlined"></TextField></div>
+                     <div className = "col-md-3"><TextField className = "block" onChange = {this.onchangeclaimnumber} label="Claim Number" variant="outlined"></TextField></div>
                      <div className = "col-md-3">Vehicle Number</div>
                      <div className = "col-md-3"><TextField disabled id = "clmn_vehinum" className = "block" variant="outlined"></TextField></div>
                  </div>

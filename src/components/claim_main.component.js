@@ -16,8 +16,6 @@ var vh_perildata = {};
 $(document).ready(function (){
     // alert(JSON.parse(localStorage.getItem('selectednumber')));
     // alert(JSON.parse(localStorage.getItem('selectedpolicynumber')));
-    // console.log(JSON.parse(localStorage.getItem('selectednumber')));
-    // console.log(JSON.parse(localStorage.getItem('selectedpolicynumber')));
     
 
     $.ajax({
@@ -35,7 +33,6 @@ $(document).ready(function (){
                 outcolls = [];
                 outrowsss= [];
 
-                console.log(value);
                 
                 for (var o in value.metaData)
                 {
@@ -45,8 +42,6 @@ $(document).ready(function (){
                 {
                     outrowsss.push(value.rows[i]);
                 }
-                console.log(outrowsss);
-                console.log(outrowsss[0][3]);
 
                 branchcol = outrowsss[0][1];
                 localStorage.setItem('branch',JSON.stringify(branchcol));
@@ -135,7 +130,6 @@ $(document).ready(function (){
                 periloutcolls = [];
                 periloutrows = [];
 
-                console.log(value);
                 
                 for (var o in value.metaData)
                 {
@@ -145,7 +139,6 @@ $(document).ready(function (){
                 {
                     periloutrows.push(value.rows[i]);
                 }
-                console.log(periloutrows);
                 
                 $('#bp1').val(periloutrows[0][3]);
                 $('#bp2').val(periloutrows[0][4]);
@@ -216,7 +209,6 @@ $(document).ready(function (){
             $.each(data, function (index, value) {
                 debcols = [];
                 debrows= [];
-                console.log(value);
                 
                 for (var o in value.metaData)
                 {
@@ -226,7 +218,6 @@ $(document).ready(function (){
                 {
                     debrows.push(value.rows[i]);
                 }
-                console.log(debrows);
                 
                 $('#debitinfotable').DataTable({
                     data: debrows,
@@ -261,7 +252,6 @@ $(document).ready(function (){
             $.each(data, function (index, value) {
                 debcols = [];
                 debrows= [];
-                console.log(value);
                 
                 for (var o in value.metaData)
                 {
@@ -271,7 +261,6 @@ $(document).ready(function (){
                 {
                     debrows.push(value.rows[i]);
                 }
-                console.log(debrows);
                 
                 $('#claiminfotable').DataTable({
                     data: debrows,

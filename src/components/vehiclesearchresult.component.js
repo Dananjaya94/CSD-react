@@ -26,10 +26,8 @@ $(document).ready(function (){
     // var queryStringValue = getUrlVars()["id"];
     var vhnumber = {};
     vhnumber.str = JSON.parse(localStorage.getItem('entrval'));
-    console.log(vhnumber);
 
     var v2 = JSON.stringify(vhnumber.str);
-    console.log(v2);
 
     $.ajax({
         type: "GET",
@@ -45,7 +43,6 @@ $(document).ready(function (){
             $.each(data, function (index, value) {
                 outcolls = [];
                 outrowsss= [];
-                console.log(value);
                 
                 for (var o in value.metaData)
                 {
@@ -55,7 +52,6 @@ $(document).ready(function (){
                 {
                     outrowsss.push(value.rows[i]);
                 }
-                console.log(outrowsss);
                 
                 $('#searchresulttable').DataTable({
                     data: outrowsss,
