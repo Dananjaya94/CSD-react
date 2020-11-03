@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
+//Map Component
 export class SriLankaMap extends Component {
   render() {
     return (

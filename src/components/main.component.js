@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 export default class main extends Component
 {
+    //main conmonent
     nextPath(path) {
         this.props.history.push(path);
       }

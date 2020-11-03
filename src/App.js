@@ -18,7 +18,7 @@ import InformClaim from "./components/VIPHOTcomponents/com/informcomplain.compon
 import GenerateComplain from "./components/VIPHOTcomponents/com/generateNewClaim.component";
 import AssessorSelection from "./components/VIPHOTcomponents/com/assessorselectionform.component";
 import ClaimMn from "./components/VIPHOTcomponents/com/clmain.component";
-
+//app component
 function App() {
   return (
     <Router>
